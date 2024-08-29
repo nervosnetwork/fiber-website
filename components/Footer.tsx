@@ -1,13 +1,11 @@
 import type { FC } from "react";
 
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
 import { BsSubstack } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
 export const Footer: FC = () => {
   return (
     <footer>
@@ -21,9 +19,11 @@ export const Footer: FC = () => {
           </Link>
           <div className="footer-nav">
             <Link href="/whitepaper">Features</Link>
-            <Link href="/eco">SparkOS</Link>
+            <Link href="/eco">Common Lightning Initiative</Link>
+            <Link href="/eco">Roadmap</Link>
+            <Link href="/eco">Resources</Link>
           </div>
-          <div>
+          <div className="footer_links">
             <Link href="/whitepaper">
               <BsGithub size={16} />
             </Link>
