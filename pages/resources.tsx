@@ -1,31 +1,14 @@
-import Buttons from "components/Buttons";
 import { Footer } from "components/Footer";
-import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import Link from "next/link";
-import YouTube from "react-youtube";
 
-const Satoshi = localFont({
-  src: "../public/font/Satoshi-Light.woff",
-  display: "swap",
-});
+
 const Cabinet = localFont({
   src: "../public/font/CabinetGrotesk-Bold.woff",
   display: "swap",
 });
 const Resourcespage = () => {
-  const opts = {
-    height: "390",
-    width: "640",
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
-  };
-  const _onReady = (event: { target: { pauseVideo: () => void } }) => {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  };
+
   return (
     <>
       <main className={"tutorials " + Cabinet.className}>
