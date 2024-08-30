@@ -34,7 +34,7 @@ export default function Table() {
             </td>
             <td>
               <span className="fn">
-                CKB / {is_mobile ? <br />:<> </>} User Defined Token
+              rgb++ assets
               </span>
             </td>
           </tr>

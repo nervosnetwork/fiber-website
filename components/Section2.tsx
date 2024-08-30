@@ -34,7 +34,7 @@ export default function Section2() {
                 d="M1326.5 180.5L17.0963 180.5C8.25379 180.5 2.44826 171.261 6.28427 163.294L82.5 5"
                 stroke="url(#paint0_linear_4_179)"
                 stroke-width="10"
-                stroke-linecap="round"
+                strokeLinecap="round"
               />
               <defs>
                 <linearGradient
@@ -45,8 +45,8 @@ export default function Section2() {
                   y2="5.00005"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#00CC9B" />
-                  <stop offset="1" stop-color="#00CC9B" stop-opacity="0" />
+                  <stop stopColor="#00CC9B" />
+                  <stop offset="1" stopColor="#00CC9B" stopOpacity="0" />
                 </linearGradient>
               </defs>
             </svg>
@@ -69,7 +69,7 @@ export default function Section2() {
                 d="M2 2H1202"
                 stroke="url(#paint0_linear_4_182)"
                 stroke-width="3"
-                stroke-linecap="round"
+                strokeLinecap="round"
               />
               <defs>
                 <linearGradient
@@ -80,8 +80,8 @@ export default function Section2() {
                   y2="2.43259"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#FF9900" />
-                  <stop offset="1" stop-color="#FF9900" stop-opacity="0" />
+                  <stop stopColor="#FF9900" />
+                  <stop offset="1" stopColor="#FF9900" stopOpacity="0" />
                 </linearGradient>
               </defs>
             </svg>

@@ -58,7 +58,7 @@ export default function Section3() {
                 d="M2 2H1202"
                 stroke="url(#paint0_linear_4_182)"
                 stroke-width="3"
-                stroke-linecap="round"
+                strokeLinecap="round"
               />
               <defs>
                 <linearGradient
@@ -69,8 +69,8 @@ export default function Section3() {
                   y2="2.43259"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#FF9900" />
-                  <stop offset="1" stop-color="#FF9900" stop-opacity="0" />
+                  <stop stopColor="#FF9900" />
+                  <stop offset="1" stopColor="#FF9900" stopOpacity="0" />
                 </linearGradient>
               </defs>
             </svg>

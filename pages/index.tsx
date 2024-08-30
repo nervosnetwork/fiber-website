@@ -46,7 +46,7 @@ const Homepage = () => {
                   d="M1200 79L17.2126 79C8.34156 79 2.53722 69.7069 6.42926 61.7352L34.1293 5"
                   stroke="url(#paint0_linear_4_189)"
                   strokeWidth="10"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                 />
                 <defs>
                   <linearGradient
@@ -57,8 +57,8 @@ const Homepage = () => {
                     y2="5"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#00CC9B" />
-                    <stop offset="1" stop-color="#00CC9B" stop-opacity="0" />
+                    <stop stopColor="#00CC9B" />
+                    <stop offset="1" stopColor="#00CC9B" stopOpacity="0" />
                   </linearGradient>
                 </defs>
               </svg>
