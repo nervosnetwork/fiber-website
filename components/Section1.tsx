@@ -19,7 +19,7 @@ export default function Section1() {
   const is_mobile = isMobile();
 
   return (
-    <section className={Satoshi.className + " section1"}>
+    <section id="#" className={Satoshi.className + " section1"}>
       <div className="meteor_t">
         
       </div>
@@ -51,7 +51,7 @@ export default function Section1() {
         </>
       )}
       <div className="meteor_b">
-      
+        
       </div>
 
       <h2 className={Cabinet.className}>

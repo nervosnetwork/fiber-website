@@ -585,6 +585,15 @@ section.common .common_info p {
   .section1  p{
     font-size: 16px;
   }
+  .meteor_b,.meteor_t{
+    animation: light 4s infinite ease-out;
+
+  }
+  .meteor_b{
+    animation-delay: 1s;
+    background-position-x: -2000px;
+  }
+
   section h1.main_slogan {
     font-size: 30px;
     line-height: 40px;
