@@ -1,16 +1,8 @@
-import { useRouter } from "next/router";
-import useSmoothScroll from "react-smooth-scroll-hook";
-
 import React from "react";
 
 import isMobile from "is-mobile";
 import localFont from "next/font/local";
-import Buttons from "./Buttons";
-import Link from "next/link";
-const Satoshi = localFont({
-  src: "../public/font/Satoshi-Light.woff",
-  display: "swap",
-});
+
 const Cabinet = localFont({
   src: "../public/font/CabinetGrotesk-Bold.woff",
   display: "swap",
@@ -68,8 +60,38 @@ export default function Section4() {
         </div>
 
         <div className="meteor_line_1">
-        <img src="/images/border_m_3.svg" />
-      </div>
+          {is_mobile ? (
+            <img src="/images/border_m_3.svg" />
+          ) : (
+            <svg
+              width="1204"
+              height="4"
+              viewBox="0 0 1204 4"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1202 2L2.00003 2"
+                stroke="url(#paint0_linear_4_187)"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_4_187"
+                  x1="2"
+                  y1="1.56741"
+                  x2="1202"
+                  y2="1.56741"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#FF9900" />
+                  <stop offset="1" stop-color="#FF9900" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          )}
+        </div>
       </div>
     </section>
   );

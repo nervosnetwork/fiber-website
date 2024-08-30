@@ -18,25 +18,25 @@ export const Footer: FC = () => {
             <img src="images/logo.png" height={20} />
           </Link>
           <div className="footer-nav">
-            <Link href="/whitepaper">Features</Link>
-            <Link href="/eco">Common Lightning Initiative</Link>
-            <Link href="/eco">Roadmap</Link>
-            <Link href="/eco">Resources</Link>
+            <Link href="/features">Features</Link>
+            <Link href="/#common">Common Lightning Initiative</Link>
+            <Link href="/#roadmap">Roadmap</Link>
+            <Link href="/resources">Resources</Link>
           </div>
           <div className="footer_links">
-            <Link href="/whitepaper">
+            <Link href="https://github.com/nervosnetwork/fiber" target="_blank">
               <BsGithub size={16} />
             </Link>
-            <Link href="/whitepaper">
+            <Link href="https://x.com/CKBEcoFund" target="_blank">
               <BsTwitterX size={16} />
             </Link>
-            <Link href="/whitepaper">
+            <Link href="https://substack.com/@ckbecofund" target="_blank">
               <BsSubstack size={16} />
             </Link>
           </div>
         </div>
         <div className="footer-right">
-        <img src="images/footer_r.png" width={500} alt="" />
+          <img src="images/footer_r.png" width={500} alt="" />
         </div>
       </div>
     </footer>

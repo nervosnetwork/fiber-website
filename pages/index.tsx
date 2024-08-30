@@ -8,6 +8,7 @@ const Section1 = dynamic(() => import('../components/Section1'), { ssr: false })
 const Section2 = dynamic(() => import('../components/Section2'), { ssr: false });
 const Section3 = dynamic(() => import('../components/Section3'), { ssr: false });
 const Section4 = dynamic(() => import('../components/Section4'), { ssr: false });
+const Table = dynamic(() => import('../components/Table'), { ssr: false });
 const Satoshi = localFont({
   src: "../public/font/Satoshi-Light.woff",
   display: "swap",
@@ -25,51 +26,8 @@ const Homepage = () => {
         <Section2 />
         <Section3 />
        
-        
-        <section className="feature_compare">
-          <table>
-            <tbody>
-              <tr>
-                <th>Feature</th>
-                <td>
-                  <span className="ln">Lightning Network</span>
-                </td>
-                <td>
-                  <span className="fn">Fiber Network</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Assets</th>
-                <td>
-                  <span className="ln">BTC Only</span>
-                </td>
-                <td>
-                  <span className="fn">
-                   CKB / User Defined Token
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <th>Cross Chain Hub</th>
-                <td>
-                  <span className="ln">No</span>
-                </td>
-                <td>
-                  <span className="fn">Yes</span>
-                </td>
-              </tr>
-              <tr>
-                <th>WatchTower Storage</th>
-                <td>
-                  <span className="ln">O(n)</span>
-                </td>
-                <td>
-                  <span className="fn">O(1)</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <Table />
+       
         <Section4 />
         <section className={"roadmap "+Cabinet.className} id="roadmap">
           <div className="roadmap_main">

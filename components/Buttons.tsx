@@ -4,7 +4,7 @@ export default function Buttons(props: { title: string; href: string }) {
 
   return (
     <>
-      <a href={href} className="normal_button">
+      <a href={href} target="_blank" className="normal_button">
         <div className="text-white">{title}</div>
       </a>
     </>

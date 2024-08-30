@@ -253,6 +253,7 @@ main {
   min-width: 1440px !important;
   height: 100vh;
   overflow: auto;
+  overflow-x: hidden;
   scroll-snap-type: y mandatory;
 }
 section {
@@ -274,19 +275,33 @@ section h2 {
 }
 section p {
   color: #fff;
+  margin-top: 20px;
 }
 .meteor {
   width: 100%;
   height: 4px;
-}
-.meteor_t {
-  margin: 20px 0;
+  width: 100%;
+  
 }
 
+.meteor_t {
+  margin: 20px 0;
+  height: 6px;
+  background: url(images/line_1.svg) left center no-repeat;
+  animation: light 2s infinite ease-out;
+  width: 120%;
+}
 .meteor_b {
-  text-align: right;
-  padding: 10px 0 20px 0;
-  width: 100%;
+  margin: 20px 0;
+  height: 10px;
+  background: url(images/line_2.svg) left center no-repeat;
+  animation: light 2s infinite ease-out;
+  animation-delay: 0.5s;
+  width: 120%;
+}
+@keyframes light {
+  from {background-position-x:-720px;}
+  to {background-position-x: 2000px;}
 }
 
 section h1 span {
@@ -298,7 +313,7 @@ section h1 {
   line-height: 66px;
   font-size: 48px;
   text-align: center;
-
+  font-style: italic;
   background: #333 -webkit-radial-gradient(
       circle,
       rgba(255, 255, 255, 1),
@@ -311,6 +326,9 @@ section h1 {
   /*-webkit-text-fill-color:transparent;*/
 
   animation: ani 2s linear infinite;
+}
+.section1  p{
+  font-size: 22px;
 }
 section .links {
   margin-top: 40px;
@@ -348,10 +366,11 @@ section.works .meteor_line_1 {
 }
 section.feature {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 .feature_main {
-  width: 1440px;
+  width: 1200px;
 
   text-align: left;
 
@@ -401,6 +420,8 @@ section.feature_compare {
   background-image: url(images/meteor_3.svg), url(images/meteor_4.svg);
   background-position: 0 15%, right 70%;
   background-repeat: no-repeat, no-repeat;
+  width: 1200px;
+  margin:0 auto
 }
 section.feature_compare table {
   width: 1200px;
@@ -441,7 +462,7 @@ section.feature_compare table tr:nth-child(1) span.fn {
 
   font-size: 24px;
 }
-section.common .meteor_line {
+section.common .meteor_line_1 {
   margin-top: 30px;
 }
 section.common .common_main {
@@ -540,6 +561,18 @@ section.common .common_info p {
   text-decoration: none;
   color: #fff;
 }
+.youtube{
+  width: 100%;
+  height: 768px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.youtube svg{
+  width: 120px;
+}
 @media (max-device-width: 750px) {
   section {
     width: 80% !important;
@@ -548,6 +581,9 @@ section.common .common_info p {
   }
   .section1 {
     margin-top: 100px;
+  }
+  .section1  p{
+    font-size: 16px;
   }
   section h1.main_slogan {
     font-size: 30px;
@@ -565,13 +601,13 @@ section.common .common_info p {
     padding: 0 3px;
   }
   section h2 {
-    font-size: 30px;
+    font-size: 24px;
     line-height: 38px;
     font-weight: 700;
     margin: 10px auto;
   }
   section p {
-    font-size: 16px;
+    font-size: 12px;
   }
   section .meteor_line_1 {
     width: 100%;
@@ -599,6 +635,7 @@ section.common .common_info p {
   section.works h2 {
     width: 100%;
     text-align: left;
+    font-size: 24px;
   }
   section.works .meteor_line {
     width: 125%;
@@ -615,7 +652,7 @@ section.common .common_info p {
     background: url(images/border_m_4.svg) right top no-repeat;
     background-size: cover;
     padding: 20px 0 30px 0;
-    font-size: 30px;
+    font-size: 24px;
     width: 125%;
     margin-left: -20%;
     text-indent: 16%;
@@ -668,16 +705,20 @@ section.common .common_info p {
   }
   section.feature_compare table td {
     width: 33%;
-    padding: 2px;
-    font-size: 8px;
+    padding: 4px;
+    font-size: 14px;
+    vertical-align: middle;
   }
   section.feature_compare table th {
-    font-size: 8px;
+    font-size: 14px;
+    vertical-align: middle;
   }
   section.feature_compare table td span {
     border-radius: 3px;
-    height: 16px;
     line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   section.feature_compare table span.ln {
     background: #dde3e31a;
@@ -690,12 +731,12 @@ section.common .common_info p {
   section.feature_compare table tr:nth-child(1) span.ln {
     background: #dde3e333;
 
-    font-size: 10px;
+    font-size: 16px;
   }
   section.feature_compare table tr:nth-child(1) span.fn {
     background: #00cc9b33;
 
-    font-size: 10px;
+    font-size: 16px;
   }
 
   section.common .common_main {
@@ -711,14 +752,14 @@ section.common .common_info p {
   }
   section.common h2 {
     line-height: 38px;
-    font-size: 30px;
+    font-size:24px;
   }
   section.common .common_info {
     margin-top: 50px;
   }
   section.common .common_info h3 {
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 30px;
   }
   .roadmap_main {
@@ -727,7 +768,7 @@ section.common .common_info p {
   }
 
   .roadmap_main dt {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 30px;
     padding-top: 30px;
     border-top: 1px solid #484d4e;
@@ -741,6 +782,7 @@ section.common .common_info p {
   }
   body {
     overflow-y: auto;
+    overflow-x: hidden;
   }
   main {
     min-width: 100% !important;
@@ -851,10 +893,16 @@ section.common .common_info p {
   .tutorials ul {
     padding-bottom: 60px;
     background: url(images/border_t_m.svg) right bottom no-repeat;
-    background-size: 100% auto;
+    background-size: contain;
   }
 
   .tutorials ul li a {
     font-size: 18px;
+  }
+  .youtube{
+    height: 192px;
+  }
+  .youtube svg{
+    width: 80px;
   }
 }

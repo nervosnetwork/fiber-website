@@ -17,33 +17,30 @@ class MyDocument extends Document<Props> {
             rel="stylesheet"
           />
           <link href="/app.css" rel="stylesheet" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-         
+     
           <link
             rel="shortcut icon"
             type="image/x-icon"
-            href="images/favicon.ico"
+            href="images/fav.ico"
           ></link>
           <meta
             name="description"
-            content="RGB++ is an asset issuance protocol on the Bitcoin mainnet. RGB++ Fans focus on promoting protocol within the Bitcoin ecosystem and building global RGB++ community."
+            content="Fiber Network is a next-generation,common lightning network built on Nervos CKB and off-chain channels."
           />
-          <title>Fiber</title>
-         <meta property="og:title" content="Fiber" />
+          <title>CKBFiber</title>
+         <meta property="og:title" content="CKBFiber" />
           <meta property="og:type" content="website" />
-          {/* <meta
+          <meta
             property="og:image"
-            content="https://www.rgbppfans.com/images/rgb++.png"
+            content="/images/rgb++.png"
           />
-          <meta property="og:site_name" content="RGB++ Fans" />
+          <meta property="og:site_name" content="CKBFiber" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@rgbppfans" />
-          <meta name="twitter:creator" content="@rgbppfans" />
-          <meta name="twitter:title" content="RGB++ Fans" />
-          <meta name="twitter:description" content="RGB++ is an asset issuance protocol on the Bitcoin mainnet. RGB++ Fans focus on promoting protocol within the Bitcoin ecosystem and building global RGB++ community." />
-          <meta name="twitter:image" content="https://www.rgbppfans.com/images/rgbppfuns.png"></meta>
-          <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=0, user-scalable=yes,shrink-to-fit=no" /> */}
+          <meta name="twitter:site" content="@CKBEcoFund" />
+          <meta name="twitter:creator" content="@CKBEcoFund" />
+          <meta name="twitter:title" content="CKBFiber" />
+          <meta name="twitter:description" content="Fiber Network is a next-generation,common lightning network built on Nervos CKB and off-chain channels." />
+          {/* <meta name="twitter:image" content="https://www.rgbppfans.com/images/rgbppfuns.png"></meta> */}
 
         </Head>
         <body>
