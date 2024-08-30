@@ -1,9 +1,6 @@
-import Buttons from "components/Buttons";
-import { Footer } from "components/Footer";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 const Section1 = dynamic(() => import('../components/Section1'), { ssr: false });
 const Section2 = dynamic(() => import('../components/Section2'), { ssr: false });
 const Section3 = dynamic(() => import('../components/Section3'), { ssr: false });
@@ -18,10 +15,15 @@ const Cabinet = localFont({
   display: "swap",
 });
 const Homepage = () => {
-
+  useEffect(()=>{
+    window.setTimeout(()=>{    document.querySelector('#main')?.scrollTo(0,0)
+    }
+  ,100)
+    
+  },[])
   return (
     <>
-      <main className={Satoshi.className}>
+      <main id="main" className={Satoshi.className}>
         <Section1 />
         <Section2 />
         <Section3 />
@@ -42,7 +44,7 @@ const Homepage = () => {
                 <path
                   d="M1200 79L17.2126 79C8.34156 79 2.53722 69.7069 6.42926 61.7352L34.1293 5"
                   stroke="url(#paint0_linear_4_189)"
-                  stroke-width="10"
+                  strokeWidth="10"
                   stroke-linecap="round"
                 />
                 <defs>
@@ -77,7 +79,7 @@ const Homepage = () => {
             </dl>
           </div>
         </section>
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </>
   );

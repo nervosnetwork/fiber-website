@@ -1,5 +1,7 @@
 import { Footer } from "components/Footer";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+const Intro = dynamic(() => import('../components/Intro'), { ssr: false });
 
 const Satoshi = localFont({
     src: "../public/font/Satoshi-Light.woff",
@@ -15,12 +17,7 @@ const Features = () => {
     <>
       <main className={"resources "+Satoshi.className}>
         <div className="resources_main">
-          <div className="intro">
-            <p className={Cabinet.className}>
-              Fiber Network is a next-generation, <br />common lightning network built <br />
-              on Nervos CKB and off-chain channels.
-            </p>
-          </div>
+          <Intro />
           <div className="intro_box">
             <img src="images/intro_1.svg" />
             <dl>

@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
-import useSmoothScroll from "react-smooth-scroll-hook";
 
 import React from "react";
 
 import isMobile from "is-mobile";
 import localFont from "next/font/local";
-import Buttons from "./Buttons";
 const Satoshi = localFont({
   src: "../public/font/Satoshi-Light.woff",
   display: "swap",
@@ -23,33 +21,7 @@ export default function Section2() {
       <div>
         <div className="meteor_line">
           {is_mobile ? (
-            <svg
-              width="564"
-              height="121"
-              viewBox="0 0 564 121"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1195.69 116L17.0741 116C8.23702 116 2.43137 106.772 6.25669 98.8054L51.3015 4.99997"
-                stroke="url(#paint0_linear_131_407)"
-                stroke-width="10"
-                stroke-linecap="round"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_131_407"
-                  x1="596.845"
-                  y1="116"
-                  x2="596.845"
-                  y2="5.00002"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#00CC9B" />
-                  <stop offset="1" stop-color="#00CC9B" stop-opacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
+           <img src="/images/border_m_7.svg" />
           ) : (
             <svg
               width="1318"

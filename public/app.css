@@ -116,13 +116,13 @@ header {
   margin: 0 auto;
 }
 .resources .intro {
-  height: 350px;
-  background: url(images/bg_res.svg) center center no-repeat;
+  height: 500px;
+  background: url(images/bg_res_p.svg) center center no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  margin: 150px 0;
+  margin: 100px 0;
   scroll-snap-align: center;
 }
 .resources .intro_box {
@@ -157,9 +157,9 @@ header {
 }
 
 .resources .intro p {
-  width: 350px;
-  line-height: 22px;
-  font-size: 16px;
+  width: 70%;
+  font-size: 30px;
+  line-height: 38px;
   text-align: center;
 }
 
@@ -209,7 +209,7 @@ footer {
   display: flex;
   align-items: center;
   color: #fff;
-  scroll-snap-align: end;
+  scroll-snap-align: start;
 }
 
 footer .footer-main {
@@ -265,7 +265,9 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  scroll-snap-align: start;
+  /* scroll-snap-align: end; */
+  scroll-snap-align:  start end;
+
 }
 
 section h2 {
@@ -357,7 +359,7 @@ section.works .meteor_line {
   position: absolute;
   width: 100%;
   pointer-events: none;
-  top: -80px;
+  top: -120px;
 }
 section.works .meteor_line_1 {
   width: 100%;
@@ -481,6 +483,7 @@ section.common h2 {
 section.common .info p {
   margin-top: 30px;
   line-height: 22px;
+  font-size: 16px;
 }
 section.common .common_info {
   clear: both;
@@ -583,7 +586,7 @@ section.common .common_info p {
     margin-top: 100px;
   }
   .section1  p{
-    font-size: 16px;
+    font-size: 13px;
   }
   .meteor_b,.meteor_t{
     animation: light 4s infinite ease-out;
@@ -651,8 +654,7 @@ section.common .common_info p {
     pointer-events: none;
     top: 0;
     position: relative;
-    margin-left: 20%;
-    margin-top: 60px;
+    margin-top: 40px;
   }
   .feature_main {
     width: auto;

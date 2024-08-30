@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import useSmoothScroll from "react-smooth-scroll-hook";
 
 import React from "react";
 

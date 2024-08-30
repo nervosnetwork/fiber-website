@@ -1,8 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
-import { useRef, type FC } from "react";
 import { useRouter } from "next/router";
-import useSmoothScroll from "react-smooth-scroll-hook";
 
 import { BsSubstack } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
@@ -21,16 +18,13 @@ const Satoshi = localFont({
 });
 export default function Header() {
   const router = useRouter();
-  const ref = React.useRef<HTMLInputElement>(null);
   const is_mobile = isMobile();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
-  const { scrollTo } = useSmoothScroll({
-    ref,
-  });
+
 
   return (
     <>
@@ -141,14 +135,12 @@ export default function Header() {
                 <Link
                   href="/#common"
                   className={router.pathname === "#common" ? "sel" : ""}
-                  onClick={() => scrollTo("#common")}
                 >
                   Common Lightning Initiative
                 </Link>
                 <Link
                   href="/#roadmap"
                   className={router.pathname === "#roadmap" ? "sel" : ""}
-                  onClick={() => scrollTo("#roadmap")}
                 >
                   Roadmap
                 </Link>
