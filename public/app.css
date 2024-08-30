@@ -580,8 +580,8 @@ section.common .common_info p {
   .section1 .links_m {
     height: 154px;
     width: 100%;
-    background: url(images/bg_m_1.svg) 0 0 no-repeat;
-    background-size: cover;
+    background: url(images/bg_m_1.svg) center center no-repeat;
+    background-size: contain;
     margin: 20px 0;
     display: flex;
     align-items: center;

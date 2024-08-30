@@ -107,15 +107,15 @@ const Homepage = () => {
               <dt>
                 <span>2024 Q3</span>
               </dt>
-              <dd>Fiber Network Testing</dd>
+              <dd>- Fiber Network testnet launch, including multi-hop routing and watchtower service.</dd>
               <dt>
                 <span>2024 Q4</span>
               </dt>
-              <dd>Fiber Network Mainnet Launch</dd>
+              <dd>- Improve RPC and SDK. <br />- Refine Fiber Network node and contract functionalities (e.g. more flexible RPC and contract invocation methods for upper-layer applications to address liquidity issues).</dd>
               <dt>
-                <span>2025</span>
+                <span>2025 Q1</span>
               </dt>
-              <dd>Adding More Features (e.g. Privacy Protection Algorithms)</dd>
+              <dd>- Fiber Network mainnet launch</dd>
             </dl>
           </div>
         </section>
