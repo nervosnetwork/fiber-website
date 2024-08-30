@@ -79,7 +79,7 @@ const Homepage = () => {
             </dl>
           </div>
         </section>
-        {/* <Footer /> */}
+        <Footer />
       </main>
     </>
   );
