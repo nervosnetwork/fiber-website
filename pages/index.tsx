@@ -6,6 +6,7 @@ const Section2 = dynamic(() => import('../components/Section2'), { ssr: false })
 const Section3 = dynamic(() => import('../components/Section3'), { ssr: false });
 const Section4 = dynamic(() => import('../components/Section4'), { ssr: false });
 const Table = dynamic(() => import('../components/Table'), { ssr: false });
+import { Footer } from "components/Footer";
 const Satoshi = localFont({
   src: "../public/font/Satoshi-Light.woff",
   display: "swap",
