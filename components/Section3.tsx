@@ -16,7 +16,7 @@ export default function Section3() {
   const is_mobile = isMobile();
 
   return (
-    <section className="feature" id="feature">
+    <section className="feature snap_block" id="feature">
       <div>
         <h2 className={Cabinet.className}>Highlighted Features</h2>
         <div className="feature_main">

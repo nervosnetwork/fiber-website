@@ -18,7 +18,7 @@ export default function Section1() {
   const is_mobile = isMobile();
 
   return (
-    <section id="#" className={Satoshi.className + " section1"}>
+    <section id="#" className={Satoshi.className + " section1 snap_block"}>
       <div className="meteor_t">
         
       </div>

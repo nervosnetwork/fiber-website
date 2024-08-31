@@ -17,7 +17,7 @@ export default function Section2() {
   const is_mobile = isMobile();
 
   return (
-    <section className="works">
+    <section className="works snap_block">
       <div>
         <div className="meteor_line">
           {is_mobile ? (

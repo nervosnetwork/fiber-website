@@ -12,7 +12,7 @@ export default function Table() {
   const is_mobile = isMobile();
 
   return (
-    <section className="feature_compare">
+    <section className="feature_compare snap_block">
       <table>
         <tbody>
           <tr>

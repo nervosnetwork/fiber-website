@@ -123,10 +123,8 @@ header {
   justify-content: center;
   color: #fff;
   margin: 100px 0;
-  scroll-snap-align: center;
 }
 .resources .intro_box {
-  scroll-snap-align: center;
   width: 900px;
   height: 450px;
   display: flex;
@@ -166,7 +164,6 @@ header {
 .tutorials section {
   width: 1200px;
   margin: 0 auto;
-  scroll-snap-align: center;
   text-align: left;
 }
 .tutorials section.videos img {
@@ -210,6 +207,7 @@ footer {
   align-items: center;
   color: #fff;
   scroll-snap-align: start;
+  height: 100vh;
 }
 
 footer .footer-main {
@@ -248,14 +246,18 @@ footer .footer-main div a {
   display: inline-block;
   line-height: 30px;
 }
-main {
-  width: 100%;
+main{
   min-width: 1440px !important;
   height: 100vh;
-  overflow: auto;
+  overflow-y:scroll;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: both mandatory;
 }
+.snap_block{
+  scroll-snap-align:  start ;
+
+}
+
 section {
   margin: 0 auto;
   width: 1440px;
@@ -266,7 +268,6 @@ section {
   align-items: center;
   flex-direction: column;
   /* scroll-snap-align: end; */
-  scroll-snap-align:  start end;
 
 }
 
@@ -859,7 +860,6 @@ section.common .common_info p {
     justify-content: center;
     color: #fff;
     margin: 0;
-    scroll-snap-align: center;
   }
   .resources .intro p {
     font-size: 16px;

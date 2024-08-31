@@ -12,7 +12,7 @@ export default function Section4() {
   const is_mobile = isMobile();
 
   return (
-    <section className="common" id="common">
+    <section className="common snap_block" id="common">
       <div className="common_main">
         <div className="info">
           <h2 className={Cabinet.className}>Common Lightning Initiative</h2>

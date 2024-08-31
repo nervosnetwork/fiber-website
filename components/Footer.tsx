@@ -6,7 +6,7 @@ import { BsSubstack } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
 
-export const Footer: FC = () => {
+export default function Footer(){
   return (
     <footer>
       <div className="footer-main">
