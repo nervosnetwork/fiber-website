@@ -54,7 +54,7 @@ export default function Section1() {
       </div>
 
       <h2 className={Cabinet.className}>
-        Fiber Network is making Satoshi’s vision a reality.
+        Fiber Network is making Satoshi’s vision a reality
       </h2>
       <p>The Next-generation Common Lightning Network</p>
       {is_mobile ? (

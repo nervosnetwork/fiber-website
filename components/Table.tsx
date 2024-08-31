@@ -50,13 +50,19 @@ export default function Table() {
           <tr>
             <th>
               Watchtower  {is_mobile ? <br />:<> </>} 
-              Storage
+              Storage*
             </th>
             <td>
               <span className="ln">O(n)</span>
             </td>
             <td>
               <span className="fn">O(1)</span>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td colSpan={2} style={{textAlign:'left',paddingTop:'10px'}}>
+              *O(n): storage grows with updates.  {is_mobile && <><br />&nbsp;</>} O(1): constant storage.
             </td>
           </tr>
         </tbody>

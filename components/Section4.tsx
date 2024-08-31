@@ -25,7 +25,7 @@ export default function Section4() {
         </div>
         <div className="common_info">
           <div className="img_box">
-            <img src="/images/common_1.svg" />
+            <img src="/images/common_3.svg" />
           </div>
           <h3>Full Development of Fiber Network</h3>
           <p>
@@ -49,7 +49,7 @@ export default function Section4() {
         </div>
         <div className="common_info">
           <div className="img_box">
-            <img src="/images/common_3.svg" />
+            <img src="/images/common_4.svg" />
           </div>
           <h3>Cultivation of a P2P Application Ecosystem</h3>
           <p>
