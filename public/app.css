@@ -207,7 +207,6 @@ footer {
   align-items: center;
   color: #fff;
   scroll-snap-align: start;
-  height: 100vh;
 }
 
 footer .footer-main {
