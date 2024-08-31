@@ -34,7 +34,7 @@ export default function Table() {
             </td>
             <td>
               <span className="fn">
-              CKB/RGB++ Assets
+              CKB/RGB++
               </span>
             </td>
           </tr>
@@ -62,7 +62,7 @@ export default function Table() {
           <tr>
             <th></th>
             <td colSpan={2} style={{textAlign:'left',paddingTop:'10px'}}>
-              *O(n): storage grows with updates.  {is_mobile && <><br />&nbsp;</>} O(1): constant storage.
+              *O(n): storage grows with updates.  {is_mobile && <><br /><i style={{visibility:'hidden'}}>*</i></>}O(1): constant storage.
             </td>
           </tr>
         </tbody>

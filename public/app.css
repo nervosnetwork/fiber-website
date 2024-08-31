@@ -331,6 +331,9 @@ section h1 {
 .section1  p{
   font-size: 22px;
 }
+.section1  h2{
+  font-size: 36px;
+}
 section .links {
   margin-top: 40px;
   display: flex;
@@ -451,8 +454,8 @@ section.feature_compare table span.ln {
   color: #dde3e3;
 }
 section.feature_compare table span.fn {
-  background: #00CC9B1A;
-  
+  background: #00CC9B1A!important;
+
   color: #00cc9b;
 }
 section.feature_compare table tr:nth-child(1) span.ln {
@@ -460,7 +463,7 @@ section.feature_compare table tr:nth-child(1) span.ln {
   font-size: 24px;
 }
 section.feature_compare table tr:nth-child(1) span.fn {
-  background: #00CC9B33;
+  background: #00CC9B33!important;
 
   font-size: 24px;
 }
@@ -592,6 +595,9 @@ section.common .common_info p {
   }
   .section1  p{
     font-size: 13px;
+  }
+  .section1  h2{
+    font-size: 28px;
   }
   .meteor_b,.meteor_t{
     animation: light 4s infinite ease-out;
