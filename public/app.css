@@ -574,7 +574,7 @@ section.common .common_info p {
 }
 .youtube{
   width: 100%;
-  height: 660px;
+  height: 600px;
   background-repeat: no-repeat;
   background-size: contain;
   display: flex;

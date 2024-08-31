@@ -32,7 +32,7 @@ class MyDocument extends Document<Props> {
           <meta property="og:type" content="website" />
           <meta
             property="og:image"
-            content="/images/rgb++.png"
+            content="/images/social.png"
           />
           <meta property="og:site_name" content="CKBFiber" />
           <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@ class MyDocument extends Document<Props> {
           <meta name="twitter:creator" content="@CKBEcoFund" />
           <meta name="twitter:title" content="CKBFiber" />
           <meta name="twitter:description" content="Fiber Network is a next-generation,common lightning network built on Nervos CKB and off-chain channels." />
-          {/* <meta name="twitter:image" content="https://www.rgbppfans.com/images/rgbppfuns.png"></meta> */}
+          <meta name="twitter:image" content="https://www.ckbfiber.net/images/social.png"></meta>
 
         </Head>
         <body>
