@@ -34,7 +34,7 @@ export default function Table() {
             </td>
             <td>
               <span className="fn">
-              rgb++ assets
+              CKB/RGB++ Assets
               </span>
             </td>
           </tr>

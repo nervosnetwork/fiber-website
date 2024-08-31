@@ -20,7 +20,7 @@ export const Footer: FC = () => {
           <div className="footer-nav">
             <Link href="/features">Features</Link>
             <Link href="/#common">Common Lightning Initiative</Link>
-            <Link href="/#roadmap">Roadmap</Link>
+            <Link href="/#timeline">Test Timeline</Link>
             <Link href="/resources">Resources</Link>
           </div>
           <div className="footer_links">

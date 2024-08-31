@@ -85,13 +85,21 @@ export default function Header() {
                       >
                         Common Lightning Initiative
                       </a>
-                      <a
+                      {/* <a
                         onClick={() => {
                           router.push("/#roadmap");
                           setIsOpen(false);
                         }}
                       >
                         Roadmap
+                      </a> */}
+                      <a
+                        onClick={() => {
+                          router.push("/#timeline");
+                          setIsOpen(false);
+                        }}
+                      >
+                        Test Timeline
                       </a>
                       <a
                         onClick={() => {
@@ -131,22 +139,22 @@ export default function Header() {
                 <img src="images/logo.png" height={20} />
               </Link>
               <div className={"nav-main "}>
-                <Link href="/features">Features</Link>
+                <Link href="/features"  className={router.pathname === "/features" ? "sel" : ""}>Features</Link>
                 <Link
                   href="/#common"
-                  className={router.pathname === "#common" ? "sel" : ""}
+                  className={router.pathname === "/#common" ? "sel" : ""}
                 >
                   Common Lightning Initiative
                 </Link>
                 <Link
-                  href="/#roadmap"
-                  className={router.pathname === "#roadmap" ? "sel" : ""}
+                  href="/#timeline"
+                  className={router.pathname === "/#timeline" ? "sel" : ""}
                 >
-                  Roadmap
+                  Test Timeline
                 </Link>
                 <Link
                   href="/resources"
-                  className={router.pathname === "/#resources" ? "sel" : ""}
+                  className={router.pathname === "/resources" ? "sel" : ""}
                 >
                   Resources
                 </Link>

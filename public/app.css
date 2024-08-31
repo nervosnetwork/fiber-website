@@ -518,7 +518,7 @@ section.common .common_info p {
 }
 .roadmap_main h2 {
   background: url(images/meteor_6.svg) top left no-repeat;
-  padding-top: 20px;
+  padding-top: 25px;
   margin-top: 20px;
 }
 .roadmap_main dl {
@@ -789,6 +789,9 @@ section.common .common_info p {
     line-height: 24px;
     color: #fff;
     font-weight: 500;
+  }
+  .roadmap_main h2 {
+    background-image: url(images/meteor_6_m.svg);
   }
   body {
     overflow-y: auto;
