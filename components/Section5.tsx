@@ -54,7 +54,7 @@ export default function Section4() {
                 interoperability with the Bitcoin Lightning Network
               </dd>
               <dt>
-                <span>Mid-Sep 2024</span>
+                <span>Sep 19 2024</span>
               </dt>
               <dd>
                 - Multi-hop routing support <br />- Watchtower service
