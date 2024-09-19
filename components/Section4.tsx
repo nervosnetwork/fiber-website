@@ -39,12 +39,9 @@ export default function Section4() {
           <div className="img_box">
             <img src="/images/common_2.svg" />
           </div>
-          <h3>Integration with DePIN Hardware</h3>
+          <h3>Expansion of Network Nodes</h3>
           <p>
-            By deploying over 100,000 nodes using DePIN hardware, we aim to
-            establish a globally distributed, censorship-resistant lightning
-            network capable of supporting the increasing demand for fast and
-            low-cost payments.
+          We aim to create a globally distributed, censorship-resistant network through dedicated hardware devices (https://fi5box.com/) and encourage users to set up their own nodes using personal equipment and our open-source software for fast and low-cost payments across multiple blockchain networks.
           </p>
         </div>
         <div className="common_info">
