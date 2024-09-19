@@ -41,7 +41,7 @@ export default function Section4() {
           </div>
           <h3>Expansion of Network Nodes</h3>
           <p>
-          We aim to create a globally distributed, censorship-resistant network through dedicated hardware devices (https://fi5box.com/) and encourage users to set up their own nodes using personal equipment and our open-source software for fast and low-cost payments across multiple blockchain networks.
+          We aim to create a globally distributed, censorship-resistant network through <a style={{color:'#fff'}} target="_blank" href="https://fi5box.com/">dedicated hardware devices</a> and encourage users to set up their own nodes using personal equipment and our open-source software for fast and low-cost payments across multiple blockchain networks.
           </p>
         </div>
         <div className="common_info">
