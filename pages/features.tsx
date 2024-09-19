@@ -1,4 +1,4 @@
-import { Footer } from "components/Footer";
+import Footer from "components/Footer";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 const Intro = dynamic(() => import('../components/Intro'), { ssr: false });

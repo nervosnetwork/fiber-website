@@ -1,4 +1,4 @@
-import { Footer } from "components/Footer";
+import Footer from "components/Footer";
 import localFont from "next/font/local";
 import Link from "next/link";
 
