@@ -74,7 +74,7 @@ export default function Section4() {
             className="youtube"
             style={{
               backgroundImage:
-                "url('https://i.ytimg.com/vi/-es_tPxfQTo/sddefault.jpg')",
+              "url('/images/basic.png')",
             }}
           >
             <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">
@@ -92,7 +92,7 @@ export default function Section4() {
             className="youtube"
             style={{
               backgroundImage:
-                "url('https://i.ytimg.com/vi/ePkLe7_Ve6k/sddefault.jpg')",
+              "url('/images/advance.png')",
             }}
           >
             <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">

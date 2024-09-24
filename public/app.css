@@ -581,7 +581,7 @@ section.common .common_info p {
 .youtube{
   
   width:580px;
-  height: 480px;
+  height: 326px;
   background-repeat: no-repeat;
   background-size: contain;
   display: flex;
@@ -589,7 +589,12 @@ section.common .common_info p {
   justify-content: center;
 }
 .youtube svg{
+  opacity: 0.5;
   width: 60px;
+}
+.youtube:hover svg{
+  opacity: 1;
+
 }
 @media (max-device-width: 750px) {
   section {
