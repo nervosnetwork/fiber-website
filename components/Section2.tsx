@@ -56,7 +56,7 @@ export default function Section2() {
         <img src="/images/howworks1.png" />
         <div className="meteor_line_1">
           {is_mobile ? (
-            <img src="/images/border_m_3.svg" />
+            <img src="/images/border_m_3.svg"/>
           ) : (
             <svg
               width="1204"
@@ -64,6 +64,7 @@ export default function Section2() {
               viewBox="0 0 1204 4"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              style={{ transform: 'rotate(180deg)' }}
             >
               <path
                 d="M2 2H1202"

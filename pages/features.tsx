@@ -19,7 +19,7 @@ const Features = () => {
         <div className="resources_main">
           <Intro />
           <div className="intro_box">
-            <img src="images/intro_1.svg" />
+            <img src="images/intro_calability.svg" />
             <dl>
               <dt className={Cabinet.className}>Scalability</dt>
               <dd>
@@ -31,7 +31,7 @@ const Features = () => {
             </dl>
           </div>
           <div className="intro_box">
-            <img src="images/intro_2.svg" />
+            <img src="images/intro_low_cost.svg" />
             <dl>
               <dt className={Cabinet.className}>Low Cost</dt>
               <dd>
@@ -42,7 +42,7 @@ const Features = () => {
             </dl>
           </div>
           <div className="intro_box">
-            <img src="images/intro_3.svg" />
+            <img src="images/intro_fast.svg" />
             <dl>
               <dt className={Cabinet.className}>Fast</dt>
               <dd>
@@ -53,7 +53,7 @@ const Features = () => {
             </dl>
           </div>
           <div className="intro_box">
-            <img src="images/intro_4.svg" />
+            <img src="images/intro_multi_asset.svg" />
             <dl>
               <dt className={Cabinet.className}>Multi-Asset Support</dt>
               <dd>
@@ -63,7 +63,7 @@ const Features = () => {
             </dl>
           </div>
           <div className="intro_box">
-            <img src="images/intro_5.svg" />
+            <img src="images/intro_interoperability.svg" />
             <dl>
               <dt className={Cabinet.className}>Interoperability</dt>
               <dd>

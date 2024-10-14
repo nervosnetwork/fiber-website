@@ -45,7 +45,7 @@ export default function Section3() {
         </div>
         <div className="meteor_line_1">
           {is_mobile ? (
-            <img src="/images/border_m_3.svg" />
+            <img src="/images/border_m_3.svg" style={{ transform: 'rotate(180deg)' }}/>
           ) : (
             <svg
               width="1204"
