@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Banner from "../components/Banner.astro";
+import ScrollList from "../components/ScrollList.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Features from "../components/Features.astro";
+import Compare from "../components/Compare.astro";
+
+const scrollingItems = [
+	"Faster",
+	"Cheaper",
+	"P2P",
+	"Multi-Asset Support",
+	"Interoperability",
+	"Faster",
+	"Cheaper",
+	"P2P",
+	"Multi-Asset",
+];
+---
+
+<Layout>
+  <Banner />
+  <ScrollList items={scrollingItems} />
+  <HowItWorks />
+  <ScrollList items={scrollingItems} isPrimary={false} />
+  <Features />
+  <Compare />
+</Layout>
