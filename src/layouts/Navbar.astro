@@ -27,8 +27,10 @@ const documentMenu = [
 		href: "https://github.com/nerosnetwork/fiber/blob/main/docs/specs/payment-invoice.md",
 	},
 ];
-
-const currentPath = Astro.url.pathname;
+const currentPathname =
+	Astro.url.pathname.endsWith("/") && Astro.url.pathname.length > 1
+		? Astro.url.pathname.slice(0, Astro.url.pathname.length - 1)
+		: Astro.url.pathname;
 ---
 
 <nav class="bg-[#E6D3FF] flex items-center justify-between py-4 px-20">
@@ -38,7 +40,7 @@ const currentPath = Astro.url.pathname;
   <ul class="hidden lg:flex space-x-4">
     {
       navLinks.map((link) => {
-        const isActive = currentPath === link.href;
+        const isActive = currentPathname === link.href;
         return link.id === "documentation" ? (
           <li class="relative">
             <a
