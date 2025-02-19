@@ -1,0 +1,210 @@
+---
+import ExpandFooter from "./ExpandFooter.astro";
+
+const navLinks = [
+	{ text: "About", href: "/", id: "about" },
+	{ text: "Documentation", href: "#documentation", id: "documentation" },
+	{ text: "Build on Fiber", href: "/build", id: "fiber" },
+	{ text: "Milestones", href: "/milestones", id: "milestones" },
+	{ text: "Hybrid Lightning Network", href: "/network", id: "network" },
+];
+
+const documentMenu = [
+	{
+		text: "Light Paper",
+		href: "https://github.com/nervosnetwork/fiber/blob/main/docs/light-paper.md",
+	},
+	{
+		text: "RPC Documentation",
+		href: "https://github.com/nervosnetwork/fiber/blob/main/src/rpc/README.md",
+	},
+	{
+		text: "P2P Message Protocol",
+		href: "https://github.com/nervosnetwork/fiber/blob/main/docs/specs/p2p-message.md",
+	},
+	{
+		text: "Invoice Protocol",
+		href: "https://github.com/nerosnetwork/fiber/blob/main/docs/specs/payment-invoice.md",
+	},
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-[#E6D3FF] flex items-center justify-between py-4 px-20">
+  <a href="/" class="text-xl font-bold">
+    <img src="/logo/black.svg" alt="Logo" class="h-10" />
+  </a>
+  <ul class="hidden lg:flex space-x-4">
+    {
+      navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return link.id === "documentation" ? (
+          <li class="relative">
+            <a
+              href={link.href}
+              class={`nav-link px-4 py-2 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-200 border-1 border-black ${isActive ? "selected" : ""}`}
+              id={`nav-link-${link.id}`}
+              data-link-id={link.id}
+            >
+              {link.text}
+              <span class="h-4 inline-block items-baseline">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.12486 13.3212L3.92871 5.07115H14.321L9.12486 13.3212Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </a>
+            <div class="absolute hidden">
+              <ul class="w-[285px] bg-yellow border-1 border-border-black rounded-lg shadow-lg py-1">
+                {documentMenu.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block px-4 py-2 text-gray-800 hover:bg-blue-dark hover:text-white"
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ) : (
+          <li>
+            <a
+              href={link.href}
+              class={`nav-link px-4 py-2 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-200 border-1 border-black ${isActive ? "selected" : ""}`}
+              id={`nav-link-${link.id}`}
+              data-link-id={link.id}
+            >
+              {link.text}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  <div
+    class="flex lg:hidden bg-black p-2 rounded-xl cursor-pointer"
+    id="mobile-menu-button"
+  >
+    <img src="/icons/menu.svg" alt="Menu" />
+  </div>
+</nav>
+
+{/* Mobile Menu */}
+<div
+  id="mobile-menu"
+  class="fixed top-0 left-0 w-full h-full bg-black text-white z-50 hidden"
+>
+  <div class="flex justify-between items-center align-middle p-4">
+    <a href="/" class="text-xl font-bold">
+      <img src="/logo/white.svg" alt="Logo" class="h-10" />
+    </a>
+    <button id="close-mobile-menu" class="">
+      <img class="w-10 cursor-pointer" src="/icons/close.svg" alt="" />
+    </button>
+  </div>
+
+  <div class="h-full">
+    <ul class="text-left text-body1 mb-4">
+      {
+        navLinks.map((link) => (
+          <li class=" text-white">
+            <a
+              href={link.href}
+              class="block hover:bg-yellow hover:text-black p-4"
+            >
+              {link.text}
+            </a>
+            {link.id === "documentation" && (
+              <ul class="ml-2 p-4">
+                {documentMenu.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex justify-between hover:bg-yellow hover:text-black p-4"
+                    >
+                      <span>{item.text}</span>
+                      <img class="w-[18px]" src="/icons/link.svg" alt="" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-20">
+      <ExpandFooter />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Default style for all links */
+  .nav-link {
+    background-color: black;
+    color: white;
+  }
+
+  /* Style for the selected link */
+  .nav-link.selected {
+    background-color: yellow;
+    color: black;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        //event.preventDefault(); // Prevent default link behavior
+
+        // Remove 'selected' class from all links
+        navLinks.forEach((l) => l.classList.remove("selected"));
+
+        // Add 'selected' class to the clicked link
+        link.classList.add("selected");
+
+        if (link.id === "nav-link-documentation") {
+          event.preventDefault(); // Prevent default link behavior
+          // Toggle the dropdown menu
+          const dropdown = link.nextElementSibling;
+          dropdown?.classList.toggle("hidden");
+        }
+      });
+    });
+
+    // Mobile Menu
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeMobileMenuButton = document.getElementById("close-mobile-menu");
+
+    mobileMenuButton?.addEventListener("click", () => {
+      mobileMenu?.classList.remove("hidden");
+    });
+
+    closeMobileMenuButton?.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+    });
+  });
+</script>
