@@ -42,7 +42,7 @@ const currentPathname =
       navLinks.map((link) => {
         const isActive = currentPathname === link.href;
         return link.id === "documentation" ? (
-          <li class="relative">
+          <li id="doc-li" class="relative">
             <a
               href={link.href}
               class={`nav-link px-4 py-2 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-200 border-1 border-black ${isActive ? "selected" : ""}`}
@@ -65,7 +65,7 @@ const currentPathname =
                 </svg>
               </span>
             </a>
-            <div class="absolute hidden">
+            <div id="doc-menu" class="absolute hidden">
               <ul class="w-[285px] bg-yellow border-1 border-border-black rounded-lg shadow-lg py-1">
                 {documentMenu.map((item) => (
                   <li>
@@ -170,6 +170,7 @@ const currentPathname =
   .nav-link.selected {
     background-color: yellow;
     color: black;
+    cursor: default;
   }
 </style>
 
@@ -179,7 +180,11 @@ const currentPathname =
 
     navLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
-        //event.preventDefault(); // Prevent default link behavior
+        if (link.classList.contains("selected")) {
+          // Tab is already active
+          // Prevent the default behavior of the link
+          return event.preventDefault();
+        }
 
         // Remove 'selected' class from all links
         navLinks.forEach((l) => l.classList.remove("selected"));
@@ -192,6 +197,19 @@ const currentPathname =
           // Toggle the dropdown menu
           const dropdown = link.nextElementSibling;
           dropdown?.classList.toggle("hidden");
+
+          const docLi = document.getElementById("doc-li");
+          if (docLi) {
+            docLi.addEventListener("mouseenter", () => {
+              const dropdown = docLi.querySelector("#doc-menu");
+              dropdown?.classList.remove("hidden");
+            });
+
+            docLi.addEventListener("mouseleave", () => {
+              const dropdown = docLi.querySelector("#doc-menu");
+              dropdown?.classList.add("hidden");
+            });
+          }
         }
       });
     });
