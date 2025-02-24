@@ -20,22 +20,29 @@
       balance on-chain when the channel is closed.
     </div>
   </div>
-  <div class="flex justify-between mt-4 text-white gap-[12px] md:gap-[20px]">
+  <div
+    class="flex flex-wrap md:flex-nowrap justify-between mt-4 text-white gap-[12px] md:gap-[20px]"
+  >
+    <!-- 中间内容（移动端第一行） -->
+    <div
+      class="order-1 w-full md:order-2 md:w-auto flex-grow bg-purple-dark flex justify-center p-[20px] rounded-xl border-1 border-black"
+    >
+      <h3 class="sm:text-center">1/4 Off-Chain Payment Channels</h3>
+    </div>
+
+    <!-- 上一页按钮（移动端第二行左侧） -->
     <button
       id="prevButton"
-      class="flex items-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
+      class="order-2 md:order-1 flex-1 md:flex-initial flex items-center justify-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
     >
       <img src="/icons/left.svg" alt="Previous" />
       <h3 class="hidden md:block">Previous</h3>
     </button>
-    <div
-      class="flex-grow bg-purple-dark flex justify-center p-[20px] rounded-xl border-1 border-black"
-    >
-      <h3>1/4 Off-Chain Payment Channels</h3>
-    </div>
+
+    <!-- 下一页按钮（移动端第二行右侧） -->
     <button
       id="nextButton"
-      class="flex items-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
+      class="order-3 md:order-3 flex-1 md:flex-initial flex items-center justify-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
     >
       <h3 class="hidden md:block">Next</h3>
       <img src="/icons/right.svg" alt="Next" />
