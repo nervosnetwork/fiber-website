@@ -1,0 +1,17 @@
+---
+interface Props {
+	text: string;
+}
+const { text } = Astro.props;
+---
+
+<div class="relative inline-block">
+  <slot />
+  <div
+    class="absolute z-10 w-64 p-2 -translate-x-1/2 bg-gray-800 text-white text-sm rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none left-1/2 top-full mt-2 group-hover:opacity-100"
+    aria-hidden="true"
+  >
+    {text}
+    <div class="absolute top-[-5px] left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800"></div>
+  </div>
+</div>
