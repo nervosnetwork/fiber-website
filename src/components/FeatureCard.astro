@@ -9,13 +9,21 @@ const { iconSrc, title, description } = Astro.props;
 ---
 
 <div
-  class={`p-5 h-[303px] rounded-xl flex flex-col justify-center align-middle items-start hover:gap-10 bg-yellow border-1 border-border-black cursor-pointer group`}
+  class={`h-[303px] rounded-xl flex flex-col justify-start align-middle items-start bg-yellow border-1 border-border-black cursor-pointer group overflow-hidden relative`}
 >
-  <>
-    <img src={iconSrc} alt="" class="group-hover:hidden mb-[20px] md:mb-[40px]" />
+  <div
+    class="absolute top-5 left-5 w-fit h-fit transition-transform duration-300 group-hover:-translate-y-[80%] flex flex-col justify-start"
+  >
+    <img
+      src={iconSrc}
+      alt=""
+      class="h-1/2 w-fit text-left mb-[20px] md:mb-[40px]"
+    />
     <h3>{title}</h3>
-    <p class="hidden group-hover:block text-sm text-gray-700 mt-2 text-body2">
-      {description}
-    </p>
-  </>
+  </div>
+  <div
+    class="absolute top-full left-0 w-fit text-body2 transition-transform duration-300 group-hover:-translate-y-[200px]"
+  >
+    <p class="p-5">{description}</p>
+  </div>
 </div>
