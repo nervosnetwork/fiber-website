@@ -123,11 +123,12 @@ const currentPathname =
   <div class="h-full">
     <ul class="text-left text-body1 mb-4">
       {
-        navLinks.map((link) => (
-          <li class=" text-white">
+        navLinks.map((link) => {
+        const isActive = currentPathname === link.href;
+        return <li class="text-white mobile-nav-link">
             <a
               href={link.href}
-              class="block hover:bg-yellow hover:text-black p-4"
+              class={`block hover:bg-yellow hover:text-black p-4 ${isActive ? "selected" : ""}`}
             >
               {link.text}
             </a>
@@ -149,7 +150,7 @@ const currentPathname =
               </ul>
             )}
           </li>
-        ))
+        })
       }
     </ul>
 
@@ -171,6 +172,12 @@ const currentPathname =
     background-color: yellow;
     color: black;
     cursor: default;
+  }
+
+  .mobile-nav-link .selected {
+    background-color: yellow;
+    color: black;
+    cursor: default; 
   }
 </style>
 
