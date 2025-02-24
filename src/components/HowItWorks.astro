@@ -10,27 +10,41 @@
       How Does Fiber Network Work?
     </h2>
   </div>
-  <div class="relative bg-yellow-light rounded-lg p-4 border-1 border-black">
+  <div
+    class="relative bg-yellow-light rounded-lg p-4 md:px-20 md:py-10 border-1 border-black"
+  >
     <img id="stepImage" src="/imgs/step1.png" alt="Step Image" />
+    <div id="stepDescription" class="text-body1 text-center mt-6">
+      An off-chain payment channel allows two parties to lock funds on-chain,
+      conduct unlimited instant transactions off-chain, and settle the final
+      balance on-chain when the channel is closed.
+    </div>
   </div>
-  <div class="flex justify-between mt-4 text-white gap-1">
+  <div
+    class="flex flex-wrap md:flex-nowrap justify-between mt-4 text-white gap-[12px] md:gap-[20px]"
+  >
+    <!-- 中间内容（移动端第一行） -->
+    <div
+      class="order-1 w-full md:order-2 md:w-auto flex-grow bg-purple-dark flex justify-center p-[20px] rounded-xl border-1 border-black"
+    >
+      <h3 class="sm:text-center">1/4 Off-Chain Payment Channels</h3>
+    </div>
+
+    <!-- 上一页按钮（移动端第二行左侧） -->
     <button
       id="prevButton"
-      class="flex items-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
+      class="order-2 md:order-1 flex-1 md:flex-initial flex items-center justify-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
     >
       <img src="/icons/left.svg" alt="Previous" />
-      <h3>Previous</h3>
+      <h3 class="hidden md:block">Previous</h3>
     </button>
-    <div
-      class="flex-grow text-sm bg-purple-dark flex justify-center p-[20px] rounded-xl border-1 border-black"
-    >
-      <h3>1/4 Off-Chain Payment Channels</h3>
-    </div>
+
+    <!-- 下一页按钮（移动端第二行右侧） -->
     <button
       id="nextButton"
-      class="flex items-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
+      class="order-3 md:order-3 flex-1 md:flex-initial flex items-center justify-center gap-2 bg-black rounded-xl p-[20px] cursor-pointer"
     >
-      <h3>Next</h3>
+      <h3 class="hidden md:block">Next</h3>
       <img src="/icons/right.svg" alt="Next" />
     </button>
   </div>
@@ -38,10 +52,30 @@
 
 <script type="module">
   const steps = [
-    { src: "/imgs/step1.png", title: "Off-Chain Payment Channels" },
-    { src: "/imgs/step2.png", title: "On-Chain Contracts (HTLC)" },
-    { src: "/imgs/step3.png", title: "Multi-Hop Routing" },
-    { src: "/imgs/step4.png", title: "Watchtower Service" },
+    {
+      src: "/imgs/step1.png",
+      title: "Off-Chain Payment Channels",
+      description:
+        "An off-chain payment channel allows two parties to lock funds on-chain, conduct unlimited instant transactions off-chain, and settle the final balance on-chain when the channel is closed.",
+    },
+    {
+      src: "/imgs/step2.png",
+      title: "On-Chain Contracts (HTLC)",
+      description:
+        "Hash Time-Locked Contracts (HTLC) ensure secure off-chain transactions by requiring the recipient to provide a valid hash preimage within a set timeframe to claim funds, while enabling automatic refunds if the condition isn't met.",
+    },
+    {
+      src: "/imgs/step3.png",
+      title: "Multi-Hop Routing",
+      description:
+        "Multi-hop routing enables payments to be securely relayed through multiple intermediate nodes, allowing users to transact without direct payment channels while ensuring fund transfers are atomic and secure.",
+    },
+    {
+      src: "/imgs/step4.png",
+      title: "Watchtower Service",
+      description:
+        "The Watchtower service monitors on-chain payment channels, detects anomalies, and broadcasts the latest valid state to the blockchain to prevent fund loss.",
+    },
   ];
   let currentStep = 0;
 
@@ -49,10 +83,12 @@
   const nextButton = document.getElementById("nextButton");
   const stepImage = document.getElementById("stepImage");
   const stepText = document.querySelector(".flex-grow h3");
+  const stepDescription = document.getElementById("stepDescription");
 
   function updateStep() {
     stepImage.src = steps[currentStep].src;
     stepText.textContent = `${currentStep + 1}/${steps.length} ${steps[currentStep].title}`;
+    stepDescription.textContent = steps[currentStep].description;
   }
 
   prevButton.addEventListener("click", () => {

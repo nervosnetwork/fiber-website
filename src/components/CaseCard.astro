@@ -9,18 +9,16 @@ const { icon, title, description } = Astro.props;
 ---
 
 <div
-  class={`p-5 h-[303px] rounded-xl flex flex-col justify-center align-middle items-start gap-10 bg-blue border-1 border-border-black`}
+  class={`p-5 md:px-5 md:py-10 rounded-xl flex flex-col justify-center align-middle items-start gap-5 bg-blue border-1 border-border-black`}
 >
-  <>
-    <div class="flex gap-4 justify-center items-center align-middle">
-      <div class="py-2 px-2 bg-yellow rounded-xl">
-        <img src={icon} alt="" class="w-8 h-8" />
-      </div>
-      <h3>{title}</h3>
-    </div>
+<div class="flex gap-4 justify-center items-center align-middle">
+  <div class="w-14 h-14 py-2 px-2 bg-yellow rounded-xl flex justify-center">
+    <img src={icon} alt="" />
+  </div>
+  <h3>{title}</h3>
+</div>
 
-    <p class="block text-text-primary mt-2 text-body1">
-      {description}
-    </p>
-  </>
+<p class="block text-text-primary text-body1">
+  {description}
+</p>
 </div>

@@ -8,7 +8,7 @@
         <tr class="border-b">
           <th class="py-5 px-[10px] text-left"><h4>Features</h4></th>
           <th class="p-5 text-center bg-cyan"><h4>Fiber Network</h4></th>
-          <th class="p-5 text-center bg-orange-dark"><h4>Lightning Network</h4></th>
+          <th class="p-5 text-center bg-orange-dark text-white"><h4>Lightning Network</h4></th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +23,14 @@
           <td class="p-5 text-center bg-orange-light"><div class="flex justify-center gap-1"><img src="/icons/cross.svg" alt=""> No</div></td>
         </tr>
         <tr>
-          <td class="py-5 px-[10px] text-left"><div class="flex justify-start gap-1">Watchtower Storage <img src="/icons/info.svg" alt=""></div></td>
+          <td class="relative py-5 px-[10px] text-left">
+            <div>Watchtower Storage <img id="info-check" class="cursor-pointer inline-block" src="/icons/info.svg" alt="">
+              <div class="hidden absolute bottom-12 min-w-[280px] left-[100px] p-2 rounded bg-black text-white text-body2" id="tooltip">
+                <div>O(n): Storage grows with updates</div>
+                <div>O(1): Constant storage</div>
+              </div>
+            </div>
+          </td>
           <td class="p-5 text-center bg-cyan-light">O(1)</td>
           <td class="p-5 text-center bg-orange-light">O(n)</td>
         </tr>
@@ -31,3 +38,13 @@
     </table>
   </div>
 </div>
+
+<script type="module">
+  const infoCheck = document.getElementById("info-check");
+  infoCheck.addEventListener("mouseenter", () => {
+    document.getElementById("tooltip").classList.remove("hidden");
+  });
+  infoCheck.addEventListener("mouseleave", () => {
+    document.getElementById("tooltip").classList.add("hidden");
+  });
+</script>
