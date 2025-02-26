@@ -1,16 +1,22 @@
 ---
 interface Props {
-	isPrimary?: boolean;
+	level?: "primary" | "secondary" | "tertiary";
 	items: string[];
 }
 
-const { isPrimary = true, items } = Astro.props;
+const { level = "primary", items } = Astro.props;
+const bgColor =
+	level === "primary"
+		? "bg-yellow-light"
+		: level === "secondary"
+			? "bg-blue-light"
+			: "bg-purple-light";
 
 const repeatedItems = [...items, ...items]; // Duplicate items for seamless looping
 ---
 
 <div
-  class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${isPrimary ? "bg-yellow-light" : "bg-blue-light"}`}
+  class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
 >
   <div
     class="animate-scrolling whitespace-nowrap w-max transition-transform duration-20000 flex align-middle items-center justify-center gap-5"
