@@ -1,0 +1,22 @@
+---
+interface Props {
+	title: string;
+	answer: string;
+}
+
+const { title, answer } = Astro.props;
+---
+
+<div class="relative pt-5 pl-5 mt-10">
+  <div
+    class="absolute top-0 left-0 w-8 h-8 md:w-14 md:h-14 bg-yellow border-1 border-border-black rounded flex justify-center align-middle items-center"
+  >
+    <h4>Q</h4>
+  </div>
+  <div class="bg-cyan py-5 px-5 md:px-15 rounded-2xl border-1 border-border-black">
+    <h4>{title}</h4>
+  </div>
+  <div class="mt-5 text-body1">
+	{answer}
+  </div>
+</div>

@@ -5,6 +5,7 @@ import ScrollList from "../components/ScrollList.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import Features from "../components/Features.astro";
 import Compare from "../components/Compare.astro";
+import FAQ from "../components/FAQ.astro";
 
 const scrollingItems = [
 	"Faster",
@@ -26,4 +27,6 @@ const scrollingItems = [
   <ScrollList items={scrollingItems} isPrimary={false} />
   <Features />
   <Compare />
+  <ScrollList items={scrollingItems} isPrimary={false} />
+  <FAQ />
 </Layout>
