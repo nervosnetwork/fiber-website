@@ -48,6 +48,21 @@ const buildCaseList = [
 		icon: "/icons/cross-border.svg",
 	},
 ];
+
+const documentationList = [
+	{
+		title: "Basic Tutorials",
+		description: "Get started with Fiber Network basics",
+		link: "/build/basic",
+		icon: "/icons/document.svg"
+	},
+	{
+		title: "Two Nodes Transfer",
+		description: "Learn how to set up and execute transfers between two nodes",
+		link: "/build/two-node-transfer",
+		icon: "/icons/transfer.svg"
+	}
+];
 ---
 
 <Layout>
@@ -119,6 +134,33 @@ const buildCaseList = [
   </div>
   <ScrollList items={scrollingItems} level="secondary" />
 
+  <!-- Documentation Section -->
+  <div class="p-5 md:p-20">
+    <div
+      class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
+    >
+      <h2>Documentation</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+      {documentationList.map((doc) => (
+        <a href={doc.link} class="block">
+          <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 flex-shrink-0">
+                <img src={doc.icon || "/icons/document.svg"} alt="" class="w-full h-full" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">{doc.title}</h3>
+                <p class="text-body1">{doc.description}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8 p-5 md:p-20">
     {
       buildCaseList.map((item) => (
@@ -135,6 +177,4 @@ const buildCaseList = [
       <h3>What Will You Build?</h3>
     </div>
   </div>
-
-
 </Layout>
