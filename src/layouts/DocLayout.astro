@@ -2,11 +2,26 @@
 import Layout from "./Layout.astro";
 
 interface Props {
-  title?: string;
-  description?: string;
+	title?: string;
+	description?: string;
+	frontmatter?: {
+		title?: string;
+		description?: string;
+	};
 }
 
-const { title = "Fiber Documentation", description = "Documentation for Fiber Network" } = Astro.props;
+const {
+	frontmatter = {},
+	title: propTitle,
+	description: propDescription,
+} = Astro.props;
+
+// Use frontmatter values if available, otherwise fall back to direct props or defaults
+const title = frontmatter.title || propTitle || "Fiber Documentation";
+const description =
+	frontmatter.description ||
+	propDescription ||
+	"Documentation for Fiber Network";
 ---
 
 <Layout title={title} description={description}>

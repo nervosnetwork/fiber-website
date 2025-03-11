@@ -75,6 +75,10 @@
 	pre {
 		@apply bg-white rounded-xl px-5;
 	}
+
+	code:not(pre code) {
+		@apply bg-blue-light rounded-xl px-2 py-1;
+	}
 }
 
 @layer utilities {
