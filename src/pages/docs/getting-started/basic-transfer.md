@@ -1,11 +1,11 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "A Basic Example: Two Nodes Transfer"
+title: "A Basic Example: Transfer CKB between Two Nodes"
 ---
 
 ## Overview
 
-This guide walks you through setting up and executing a basic token ([CKB](https://explorer.nervos.org/)) transfer between two nodes in the Fiber network. This is a fundamental example that demonstrates the core functionality of the Fiber Channel Network.
+This guide walks you through setting up and executing a basic token ([CKB](https://explorer.nervos.org/)) transfer between two nodes in the Fiber testnet. This is a fundamental example that demonstrates the core functionality of the Fiber Channel Network.
 
 ## Prerequisites
 
@@ -13,6 +13,7 @@ This guide walks you through setting up and executing a basic token ([CKB](https
 - [Rust](https://www.rust-lang.org/) and [Cargo](https://doc.rust-lang.org/cargo/) (if building from source)
 - Basic understanding of command line operations
 - [curl](https://curl.se/) or similar HTTP client for making RPC calls
+- [ckb-cli](https://github.com/nervosnetwork/ckb-cli) for generating keys
 
 ## Setting Up Your Nodes
 
@@ -58,12 +59,14 @@ ckb-cli account export --lock-arg <lock_arg> --extended-privkey-path ./ckb/expor
 head -n 1 ./ckb/exported-key > ./ckb/key
 ```
 
+You can get testnet funds from faucets: [https://faucet.nervos.org](https://faucet.nervos.org/).
+
 ### 4. Configure Ports
 
 Edit the `config.yml` files to use different ports for each node:
 
-- Node 1: Port 8227
-- Node 2: Port 8237
+- Node 1: RPC Port 8227, P2P Port 8228
+- Node 2: RPC Port 8237, P2P Port 8238
 
 Below is an example of the `config.yml` file, take a note on the `listening_addr` and `rpc -> listening_addr` fields:
 
@@ -197,6 +200,23 @@ curl -s -X POST \
 
 Noticed that in the `funding_amount` we pass `0xba43b7400` which is `500` CKB. This is the amount of CKB that will be locked in the channel, which also means the maximum amount of CKB that can be transferred from Node 1 to Node 2(single direction) through the channel.
 
+By default, Fiber Node will auto accept the channel. But it still needs some time for the channel to be opened. You can check the channel status by the following command:
+
+```sh
+curl -s -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": "42",
+    "jsonrpc": "2.0",
+    "method": "list_channels",
+    "params": [{
+      "peer_id": "QmcFpUnjRvMyqbFBTn94wwF8LZodvPWpK39Wg9pYr2i4TQ"
+    }]
+  }' http://localhost:8227
+```
+
+You will get the channel id and a `state_name` field in the response, it will be `CHANNEL_READY` if the channel is opened.
+
 ### 4. Generate an Invoice
 
 Next, let's create a payment invoice on Node 2 for 100 CKB. An invoice is a payment request that can be paid by the payer. You can think of it as a paycheck/bill.
@@ -223,10 +243,14 @@ curl -s -X POST \
 Some explanations on the parameters:
 
 - `amount` is the amount of CKB to be paid. `0x2540be400` is `100` CKB.
-- `expiry` is the expiry time of the invoice, `0xe10` is `3600` seconds.
-- `payment_preimage` is the preimage of the payment, it's a random value.
+- `expiry` is the expiry time of the invoice in seconds.
+- `payment_preimage` is a 32-byte random number represented in hexadecimal. Each invoice has a unique payment preimage. You can generate it using the following command:
 
-You can get the invoice ID from the response:
+```sh
+payment_preimage="0x$(openssl rand -hex 32)"
+```
+
+ Once the request is sent, you can get the invoice ID from the response:
 
 ```sh
 {
@@ -238,7 +262,7 @@ You can get the invoice ID from the response:
 
 ### 5. Make the Payment
 
-Send payment from Node 1 to Node 2 using the generated invoice:
+Now, let's send payment from Node 1 to Node 2 using the generated invoice:
 
 ```sh
 curl -s -X POST \
@@ -270,6 +294,8 @@ curl -s -X POST \
   }' http://localhost:8227
 ```
 
+In the response, you will get local and remote balance of the channel. It should be updated after the payment is sent.
+
 ## Closing the Channel
 
 When you're done with the payment channel, you can close it:
@@ -292,6 +318,8 @@ curl -s -X POST \
     }]
   }' http://localhost:8227
 ```
+
+Once the channel is successfully closed, there will be a layer 1 transaction on the chain to reclaim the locked CKB. The multiple off-chain payments between the two nodes are also settled in this layer 1 transaction. You can check the transaction details in[ CKB testnet explorer](https://testnet.explorer.nervos.org/).
 
 ## Important Notes
 
