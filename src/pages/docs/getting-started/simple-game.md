@@ -828,7 +828,7 @@ If everything goes well, you should be able to click and play the game like this
 
 <img class="max-w-[600px] mx-auto" src="/imgs/docs/simple-game/game-running.png" alt="Game Running" />
 
-And the game over scene will look like this:
+Open the browser console, you should be able to see the payment logs. And when the game is over, you'll see the final scores and the payment info like this:
 
 <img class="max-w-[600px] mx-auto" src="/imgs/docs/simple-game/game-over.png" alt="Game Over" />
 

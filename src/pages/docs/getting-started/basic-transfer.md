@@ -172,7 +172,7 @@ curl -s -X POST \
     "jsonrpc": "2.0",
     "method": "connect_peer",
     "params": [
-      {"address": "/ip4/127.0.0.1/tcp/8237/p2p/QmcFpUnjRvMyqbFBTn94wwF8LZodvPWpK39Wg9pYr2i4TQ"}
+      {"address": "/ip4/127.0.0.1/tcp/8238/p2p/QmcFpUnjRvMyqbFBTn94wwF8LZodvPWpK39Wg9pYr2i4TQ"}
     ]
   }' http://localhost:8227
 ```
