@@ -1,0 +1,250 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const gettingStartedDocs = [
+	{
+		title: "Running a Fiber Node",
+		description: "learn how to run a testnet node on your local machine",
+		link: "/docs/getting-started/running-node",
+	},
+	{
+		title: "Basic Example",
+		description: "Learn how to set up and execute transfers between two nodes",
+		link: "/docs/getting-started/basic-transfer",
+	},
+	{
+		title: "Transfer Stablecoin",
+		description: "Learn how to transfer stablecoins between nodes",
+		link: "/docs/getting-started/transfer-stablecoin",
+	},
+	{
+		title: "Connect to Testnet Public Nodes",
+		description: "learn how to connect to the testnet public nodes and do more",
+		link: "/docs/getting-started/testnet-nodes",
+	},
+	{
+		title: "Build a Game with Fiber",
+		description:
+			"use typescript + phaser.js to build a simple game with Fiber micro-payment",
+		link: "/docs/getting-started/simple-game",
+	},
+];
+
+const techExplanationDocs = [
+	{
+		title: "High-Level Source Code Explained",
+		description:
+			"a source code-level exploration of Fiber's architecture and key modules.",
+		link: "/docs/tech-explanation/high-level",
+	},
+	{
+		title: "Fiber Light Paper",
+		description: "The official light paper for Fiber Network",
+		link: "https://github.com/nervosnetwork/fiber/blob/main/docs/light-paper.md",
+	},
+	{
+		title: "P2P Message Protocol",
+		description: "The official P2P message protocol for Fiber Network",
+		link: "https://github.com/nervosnetwork/fiber/blob/main/docs/specs/p2p-message.md",
+	},
+	{
+		title: "Invoice Protocol",
+		description: "The official invoice protocol for Fiber Network",
+		link: "https://github.com/nervosnetwork/fiber/blob/main/docs/specs/payment-invoice.md",
+	},
+	{
+		title: "Understanding Payment Channel Network",
+		description: "A blog post explaining the payment channel network",
+		link: "https://blog.cryptape.com/understanding-payment-channel-network",
+	},
+];
+
+const toolList = [
+	{
+		title: "Fiber Agent with Bun.js",
+		description:
+			"A server and CLI tool writing in typescript to manage Fiber Node.",
+		link: "https://github.com/Keith-CY/fiber-agent",
+	},
+	{
+		title: "ckb-fiber-docker",
+		description:
+			"Docker image that contains Fiber Node and ckb-cli for easy deployment.",
+		link: "https://github.com/Flouse/ckb-fiber-docker",
+	},
+	{
+		title: "Python Testnet Demo",
+		description: "A Step-by-step testnet tutorial written in Python.",
+		link: "https://github.com/gpBlockchain/ckb-fiber-testnet-demo",
+	},
+];
+
+const testingResources = [
+	{
+		title: "Python Integration Tests",
+		description: "Comprehensive test cases written in Python for Fiber Network",
+		link: "https://github.com/cryptape/ckb-py-integration-test/tree/fiber/test_cases/fiber/devnet",
+	},
+	{
+		title: "E2E Tests with Bruno",
+		description: "End-to-end test examples inside the Fiber repository.",
+		link: "https://github.com/nervosnetwork/fiber/tree/develop/tests/bruno/e2e",
+	},
+
+	{
+		title: "Performance Testing",
+		description: "JMeter samples for Fiber performance testing",
+		link: "https://github.com/gpBlockchain/fiber-jmeter-sample.git",
+	},
+	{
+		title: "Stability Testing",
+		description: "Scripts for testing Fiber Network stability",
+		link: "https://github.com/sunchengzhu/fiber-stability-test-nodes",
+	},
+];
+
+const networkResources = [
+	{
+		title: "Testnet Visualization",
+		description: "Visual representation of the testnet",
+		link: "http://16.162.99.28:8120/view.html",
+		icon: "/icons/network.svg",
+	},
+	{
+		title: "Testnet Explorer",
+		description: "Browse the Fiber testnet",
+		link: "https://testnet.explorer.nervos.org/fiber/graph/nodes",
+		icon: "/icons/explorer.svg",
+	},
+];
+---
+
+<Layout>
+  <div class="p-5 md:p-20">
+    <div
+      class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-1"
+    >
+      <h2>Fiber Network Documentation</h2>
+    </div>
+
+    <div
+      class="bg-purple rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-12"
+    >
+      <h4>a place to learn and get your hands dirty with Fiber Network. More resources are coming soon.</h4>
+    </div>
+
+    <!-- Getting Started Section -->
+    <div class="mb-16">
+      <h3 class="mb-6">Getting Started</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          gettingStartedDocs.map((doc) => (
+            <a href={doc.link} class="block">
+              <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow h-full">
+                <div class="flex items-start gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{doc.title}</h3>
+                    <p class="text-body1">{doc.description}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Tech Explanation Section -->
+    <div class="mb-16">
+      <h3 class="mb-6">Tech Explanation</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          techExplanationDocs.map((doc) => (
+            <a href={doc.link} class="block">
+              <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow h-full">
+                <div class="flex items-start gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{doc.title}</h3>
+                    <p class="text-body1">{doc.description}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Development Tools Section -->
+    <div class="mb-16">
+      <h3  class="mb-3">Awesome Fiber</h3>
+      <div class="text-body1 mb-10">A collection of awesome Fiber resources from its community.</div>
+
+      <h4 class="mb-6">Tools & Examples</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 border-b-1 border-border-black">
+        {
+          toolList.map((tool) => (
+            <a href={tool.link} class="block" target="_blank" rel="noopener">
+              <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow h-full">
+                <div class="flex items-start gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{tool.title}</h3>
+                    <p class="text-body1">{tool.description}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <h4 class="mb-6">More Resources</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 border-b-1 border-border-black">
+        {
+          testingResources.map((resource) => (
+            <a
+              href={resource.link}
+              class="block"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow h-full">
+                <div class="flex items-start gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{resource.title}</h3>
+                    <p class="text-body1">{resource.description}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <h4 class="mb-6">Network Info & Visualization</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b-1 border-border-black">
+        {
+          networkResources.map((resource) => (
+            <a
+              href={resource.link}
+              class="block"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="p-6 bg-white rounded-xl border-1 border-border-black hover:shadow-lg transition-shadow h-full">
+                <div class="flex items-start gap-4">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{resource.title}</h3>
+                    <p class="text-body1">{resource.description}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="text-body1 mb-10">Stay tuned, More are coming!</div>
+    </div>
+  </div>
+</Layout>

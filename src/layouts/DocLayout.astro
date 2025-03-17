@@ -1,0 +1,112 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	frontmatter?: {
+		title?: string;
+		description?: string;
+	};
+}
+
+const {
+	frontmatter = {},
+	title: propTitle,
+	description: propDescription,
+} = Astro.props;
+
+// Use frontmatter values if available, otherwise fall back to direct props or defaults
+const title = frontmatter.title || propTitle || "Fiber Documentation";
+const description =
+	frontmatter.description ||
+	propDescription ||
+	"Documentation for Fiber Network";
+---
+
+<Layout title={title} description={description}>
+  <div class="p-5 md:p-20">
+    <div
+      class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
+    >
+      <h2>{title}</h2>
+    </div>
+
+    <div class="space-y-8 text-body1 doc-content">
+      <slot />
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Documentation styling */
+  .doc-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .doc-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .doc-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .doc-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-content p {
+    margin-bottom: 1rem;
+  }
+
+  .doc-content ul, .doc-content ol {
+    list-style-position: outside;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .doc-content ul {
+    list-style-type: disc;
+  }
+
+  .doc-content ol {
+    list-style-type: decimal;
+  }
+
+  .doc-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-content pre {
+    background-color: #1e1e1e;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .doc-content code {
+    font-family: monospace;
+  }
+
+  .doc-content a {
+    color: #3182ce;
+    text-decoration: none;
+  }
+
+  .doc-content a:hover {
+    text-decoration: underline;
+  }
+</style> 

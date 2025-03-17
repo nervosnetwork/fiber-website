@@ -71,6 +71,14 @@
 	h4 {
 		@apply font-heading font-bold lg:text-[24px] lg:leading-[120%] md:text-[20px] md:leading-[120%] text-[18px] leading-[120%];
 	}
+
+	pre {
+		@apply bg-white rounded-xl px-5;
+	}
+
+	code:not(pre code) {
+		@apply bg-blue-light rounded-xl px-2 py-1;
+	}
 }
 
 @layer utilities {
