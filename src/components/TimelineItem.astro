@@ -9,8 +9,8 @@ interface Props {
 const { item } = Astro.props;
 ---
 
-<li class="pb-16">
-  <div class="flex gap-10 items-center align-middle">
+<li class="pb-10">
+  <div class="flex gap-3 md:gap-5 lg:gap-10 items-center align-middle">
     <div
       class="z-25 w-8 h-8 rounded-full flex justify-center items-center align-middle border-2 border-border-black"
     >
@@ -28,7 +28,7 @@ const { item } = Astro.props;
 
     <div class="flex-grow mb-4 flex items-center">
       <div
-        class={`p-5 rounded-3xl w-full md:w-[670px] border-1 border-border-black ${
+        class={`p-5 rounded-xl w-full md:max-w-[670px] border-1 border-border-black ${
           item.quarter.includes("2024")
             ? "bg-purple-dark text-yellow"
             : item.quarter.includes("2025 Q1")

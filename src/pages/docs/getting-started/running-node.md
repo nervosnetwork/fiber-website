@@ -1,11 +1,12 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "Build and run a testnet node"
+title: "Run a Fiber Node"
+description: "Learn how to run a Testnet node on your local machine"
 ---
 
 ## Overview
 
-This guide walks you through the process of setting up and running a [Fiber Network Node (FNN)](https://github.com/nervosnetwork/fiber) on the testnet. You'll learn how to build the node from source or use a pre-built binary, configure it properly, and start it up.
+This guide walks you through the process of setting up and running a [Fiber Network Node (FNN)](https://github.com/nervosnetwork/fiber) on the Testnet. You'll learn how to build the node from source or use a pre-built binary, configure it properly, and start it up.
 
 ## Prerequisites
 
@@ -60,7 +61,7 @@ Launch your node with logging enabled:
 RUST_LOG=info ./fnn -c config.yml -d .
 ```
 
-The node will start syncing with the testnet and output logs to the console. You can redirect the output to a file if needed.
+The node will start syncing with the Testnet and output logs to the console. You can redirect the output to a file if needed.
 
 ## Version Compatibility and Upgrades
 
@@ -79,7 +80,7 @@ rm -rf /folder-to/my-fnn/fiber/store
 ```
 
 3. Update the node:
-   - Replace the fnn binary with the new version
+   - Replace the FNN binary with the new version
    - Start the node again
 
 ### Storage Migration (Optional)
@@ -100,7 +101,7 @@ fnn-migrate -p /folder-to/my-fnn/fiber/store
 ```
 
 4. Update and restart:
-   - Replace the fnn binary
+   - Replace the FNN binary
    - Start your node
 
 ## Next Steps
@@ -110,6 +111,6 @@ Once your node is running, you can:
 - Connect to other peers
 - Open payment channels
 - Send and receive payments
-- Explore More [RPC methods](https://github.com/nervosnetwork/fiber/blob/main/src/rpc/README.md)
+- Explore more [RPC methods](https://github.com/nervosnetwork/fiber/blob/main/src/rpc/README.md)
 
-Check out the [Basic Transfer](/docs/getting-started/basic-transfer) guide for a practical example of using your node.
+Check out the [Basic Transfer Example](/docs/getting-started/basic-transfer) guide for a practical example of using your node.

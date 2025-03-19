@@ -4,9 +4,11 @@ import Layout from "./Layout.astro";
 interface Props {
 	title?: string;
 	description?: string;
+	category?: string;
 	frontmatter?: {
 		title?: string;
 		description?: string;
+		category?: string;
 	};
 }
 
@@ -14,6 +16,7 @@ const {
 	frontmatter = {},
 	title: propTitle,
 	description: propDescription,
+	category: propCategory,
 } = Astro.props;
 
 // Use frontmatter values if available, otherwise fall back to direct props or defaults
@@ -22,21 +25,29 @@ const description =
 	frontmatter.description ||
 	propDescription ||
 	"Documentation for Fiber Network";
+const category = frontmatter.category || propCategory || "Getting Started";
 ---
 
 <Layout title={title} description={description}>
-  <div class="p-5 md:p-20">
-    <div
-      class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
-    >
-      <h2>{title}</h2>
+  <div class="relative flex justify-center p-5 gap-0 md:p-10 lg:p-20 lg:gap-20">
+    <!-- Left: Main Content -->
+    <div class="w-full md:w-3/4 max-w-[960px]">
+      <p class={"text-cyan-dark uppercase"}>{category}</p>
+      <h1 class="my-5">{title}</h1>
+      <p class={"text-text-secondary"}>{description}</p>
+      <div class="space-y-8 text-body1 doc-content">
+        <slot />
+      </div>
     </div>
 
-    <div class="space-y-8 text-body1 doc-content">
-      <slot />
-    </div>
+    <!-- Right: Table of Contents (Desktop only) -->
+    <aside class="hidden lg:block md:w-1/4 max-w-[240px] sticky top-20 self-start">
+      <nav id="toc" class="space-y-2">
+      </nav>
+    </aside>
   </div>
 </Layout>
+
 
 <style is:global>
   /* Documentation styling */
@@ -49,8 +60,8 @@ const description =
   .doc-content h2 {
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 1.25rem;
   }
 
   .doc-content h3 {
@@ -90,7 +101,8 @@ const description =
   }
 
   .doc-content pre {
-    background-color: #1e1e1e;
+    background-color: var(--color-cyan-light) !important;
+    border: 1px solid var(--color-border-black);
     border-radius: 0.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -98,15 +110,72 @@ const description =
   }
 
   .doc-content code {
-    font-family: monospace;
+    font-family: 'Ubuntu Mono', monospace;
   }
-
+  .doc-content code:not(pre code) {
+    border-radius: 0.25rem;
+    background-color:rgba(3, 3, 3, 8%);
+  }
   .doc-content a {
-    color: #3182ce;
+    color: var(--color-cyan-dark);
     text-decoration: none;
   }
 
   .doc-content a:hover {
     text-decoration: underline;
+  }
+
+  /* md code block styling */
+  .codeblock-wrapper {
+    position: relative;
+  }
+  .copy-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.25rem 0.25rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .copy-button .tooltip {
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-text-primary);
+    color: var(--color-text-on-color);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .copy-button.copied .tooltip {
+    font: var(--text-text-body2);
+    opacity: 1;
+  }
+  .codeblock-wrapper:hover .copy-button {
+    opacity: 1;
+  }
+  
+  #toc a {
+    font: var(--text-body2);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  #toc a:hover {
+    text-decoration: underline;
+  }
+
+  #toc a.text-highlight {
+    font-weight: bold;
+    color: var(--color-cyan-dark);
   }
 </style> 

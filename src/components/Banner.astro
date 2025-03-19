@@ -1,8 +1,8 @@
 ---
-// Component Logic (if needed)
+import Button from "./Button.astro";
 ---
 
-<div class="p-5 md:p-20">
+<div class="p-5 md:p-10 lg:p-20">
   <div
     class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
   >
@@ -12,85 +12,22 @@
     <h1>Satoshi's P2P Ecash Vision</h1>
   </div>
   <div
-    class="flex flex-col lg:flex-row justify-between w-full text-white gap-1"
+    class="flex flex-col lg:flex-row justify-between w-full text-white gap-5"
   >
     <div
       class="bg-purple-dark p-[20px] rounded-xl border-1 border-border-black flex justify-center"
     >
       <h3 class="text-center">A scalable, privacy-by-default payment & swap network</h3>
     </div>
-    <div
-      id="cursor-target"
-      class="relative lg:flex-grow bg-black p-[20px] rounded-xl border-1 border-border-black cursor-none"
-    >
-      <a
-        target="_blank"
-        href="https://github.com/nervosnetwork/fiber/blob/main/docs/light-paper.md"
-        class="flex gap-6 justify-center items-center"
-      >
-        <h3>Lightpaper</h3>
-        <img class="w-6 md:w-10" src="/icons/link.svg" />
-      </a>
-    </div>
-
-    <!-- 将光标移到外层 -->
-    <div id="custom-cursor" class="fixed pointer-events-none"></div>
+    <Button
+      bg="bg-black"
+      textColor="text-white"
+      external
+      label="Lightpaper"
+      link="https://github.com/nervosnetwork/fiber/blob/main/docs/light-paper.md"
+      size="large"
+      
+    />
   </div>
 </div>
 
-<style>
-  /* 隐藏默认光标 */
-  #cursor-target,
-  #cursor-target * {
-    cursor: none !important;
-  }
-
-  /* 自定义光标样式 */
-  #custom-cursor {
-    width: 32px;
-    height: 32px;
-    background: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition:
-      opacity 0.2s ease,
-      transform 0.1s ease;
-    mix-blend-mode: exclusion;
-    pointer-events: none;
-  }
-
-  /* 激活状态 */
-  #custom-cursor.active {
-    opacity: 1;
-  }
-</style>
-
-<script>
-  const target = document.getElementById("cursor-target");
-  const cursor = document.getElementById("custom-cursor");
-
-  if (target && cursor) {
-    let isHovering = false;
-
-    // 进入目标区域
-    target.addEventListener("mouseenter", () => {
-      isHovering = true;
-      cursor.classList.add("active");
-    });
-
-    // 离开目标区域
-    target.addEventListener("mouseleave", () => {
-      isHovering = false;
-      cursor.classList.remove("active");
-    });
-
-    // 全局跟踪鼠标
-    document.addEventListener("mousemove", (e) => {
-      if (isHovering) {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-      }
-    });
-  }
-</script>
