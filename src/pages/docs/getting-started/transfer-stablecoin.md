@@ -1,11 +1,12 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "Transfer Stablecoin on Fiber testnet"
+title: "Transfer Stablecoins on Fiber Testnet"
+description: Learn how to transfer stablecoins between nodes
 ---
 
 ## Overview
 
-This guide walks you through setting up and executing stablecoin transfers between 3 nodes in the Fiber testnet. Unlike [native CKB transfers example](/docs/getting-started/basic-transfer), this example demonstrates how to use [User-Defined Tokens (UDTs)](https://docs.nervos.org/docs/tech-explanation/glossary#user-defined-token) in payment channels, specifically focusing on stablecoins like [RUSD](https://testnet0815.stablepp.xyz/stablecoin).
+This guide walks you through setting up and executing stablecoin transfers between 3 nodes in the Fiber Testnet. Unlike [native CKB transfers example](/docs/getting-started/basic-transfer), this example demonstrates how to use [User-Defined Tokens (UDTs)](https://docs.nervos.org/docs/tech-explanation/glossary#user-defined-token) in payment channels, specifically focusing on stablecoins like [RUSD](https://testnet0815.stablepp.xyz/stablecoin).
 
 ## Prerequisites
 
@@ -62,7 +63,7 @@ ckb-cli account export --lock-arg <lock_arg> --extended-privkey-path ./ckb/expor
 head -n 1 ./ckb/exported-key > ./ckb/key
 ```
 
-You can get testnet funds from faucets:
+You can get Testnet funds from Faucets:
 
 - [https://faucet.nervos.org](https://faucet.nervos.org/) for CKB
 - [https://testnet0815.stablepp.xyz/stablecoin](https://testnet0815.stablepp.xyz/stablecoin) for RUSD
@@ -81,7 +82,7 @@ Below is an example of the `config.yml` file, take a note on the `listening_addr
 <summary>View complete config.yml</summary>
 
 ```sh
-# This configuration file only contains the necessary configurations for the testnet deployment.
+# This configuration file only contains the necessary configurations for the Testnet deployment.
 # All options' descriptions can be found via `fnn --help` and be overridden by command line arguments or environment variables.
 fiber:
   listening_addr: "/ip4/127.0.0.1/tcp/8228"
@@ -227,7 +228,7 @@ The response will contain a temporary channel ID:
 
 ### 3. Monitor Channel Status
 
-Wait until the channel state becomes `CHANNEL_READY`:
+Wait until the `channel_state` becomes `CHANNEL_READY`:
 
 ```sh
 curl --location 'http://127.0.0.1:8227' \
@@ -396,7 +397,7 @@ curl --location 'http://127.0.0.1:8227' \
 
 ## Important Notes
 
-- Always ensure you have sufficient testnet funds from the faucets before starting
+- Always ensure you have sufficient Testnet funds from the faucets before getting started
 - When using UDTs like stablecoins, you must specify the correct `funding_udt_type_script`
 - Keep track of your channel IDs and peer IDs
 - Monitor your node logs for any errors or important messages

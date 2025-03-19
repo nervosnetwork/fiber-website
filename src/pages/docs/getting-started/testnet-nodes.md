@@ -1,21 +1,22 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "Testnet Public Nodes User Manual"
+title: "Connect to Public Testnet Node"
+description: User manual on how to connect to the public Testnet nodes
 ---
 
 ## Overview
 
-This document provides a user manual for the testnet public nodes of the Fiber Network. It includes running a local node, establishing a channel with the public node, and transfer CKB and RUSD(stablecoin) in the channels. If you haven't read the [Running a Fiber Node](./running-node.md) guide and [Basic Transfer Example](./basic-transfer.md), it is highly recommended to read it first.
+This document provides a user manual for connecting to the public Testnet nodes of the Fiber network. It covers running a local node, establishing a channel with a public node, and transferring CKB and RUSD(stablecoin) within the channels. If you haven't read the [Run a Fiber Node](./running-node.md) guide and the [Basic Transfer Example](./basic-transfer.md), it is highly recommended to read them first.
 
 ## Testnet Public Nodes’ Addresses
 
-#### node1
+### Node1
 
 ```bash
 "/ip4/18.162.235.225/tcp/8119/p2p/QmXen3eUHhywmutEzydCsW4hXBoeVmdET2FJvMX69XJ1Eo"
 ```
 
-#### node2
+### Node2
 
 ```bash
 "/ip4/18.163.221.211/tcp/8119/p2p/QmbKyzq9qUmymW2Gi8Zq7kKVpPiNA1XUJ6uMvsUC4F3p89"
@@ -23,7 +24,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
 ## Local Node Deployment
 
-1. Download fnn
+1. Download FNN
 
    Example for macOS (Apple silicon):
 
@@ -33,9 +34,10 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    tar xzvf fnn_v0.4.0-x86_64-darwin-portable.tar.gz
    ```
 
-2. Export the account private key to the fiber node’s ckb directory
+2. Export the account private key to the Fiber node’s CKB directory
 
-   Here, the ckb-cli is used to create an account, which will later be used to pay for opening channels between the local node and the public testnet node. If ckb-cli is not installed, please download it from the [releases](https://github.com/nervosnetwork/ckb-cli/releases).
+   Use ckb-cli to create an account, which will later be used to pay for opening channels between your local node and the public Testnet node.
+   If ckb-cli is not installed, please download it from the [releases](https://github.com/nervosnetwork/ckb-cli/releases) page.
 
    ```bash
    # Create a local node directory named nodeA
@@ -54,21 +56,21 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    cp config/testnet/config.yml testnet-fnn/nodeA
    ```
 
-4. Fund nodeA’s address with 10000ckb and 20RUSD via faucet
+4. Fund nodeA’s address with 10000 CKB and 20 RUSD via Faucet
 
-   The RUSD faucet cannot directly fill an address, so you can first claim 20RUSD through a wallet like joyid, then transfer it to nodeA’s address from [the joyid wallet page](https://testnet.joyid.dev/).
+   The RUSD faucet cannot directly fill an address, so you can first claim 20 RUSD through a wallet like JoyID, then transfer it to nodeA’s address from [the JoyID wallet page](https://testnet.joyid.dev/).
 
-   - ckb: https://faucet.nervos.org
+   - CKB Faucet: https://faucet.nervos.org
 
-   - RUSD: https://testnet0815.stablepp.xyz/faucet
+   - RUSD Faucet: https://testnet0815.stablepp.xyz/faucet
 
-5. Start the node A
+5. Start the nodeA
 
    ```bash
    RUST_LOG=info ./fnn -c testnet-fnn/nodeA/config.yml -d testnet-fnn/nodeA > testnet-fnn/nodeA/a.log 2>&1 &
    ```
 
-## Establishing a CKB Channel with Public Node 1
+## Establishing a CKB Channel with Public Node1
 
 1. Establish a network connection between nodeA and node1
 
@@ -89,9 +91,9 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    { "jsonrpc": "2.0", "result": null, "id": 1 }
    ```
 
-2. Establish a channel with 500ckb: nodeA (500ckb) ⟺ node1 (250ckb)
+2. Establish a channel with 500 CKB: nodeA (500 CKB) ⟺ node1 (250 CKB)
 
-   _Node1 has open_channel_auto_accept_min_ckb_funding_amount set at 438ckb, so please input 500ckb or more._
+   node1 has `open_channel_auto_accept_min_ckb_funding_amount` set at 438 CKB, so please input 500 CKB or more.
 
    ```bash
    curl -s --location 'http://127.0.0.1:8227' --header 'Content-Type: application/json' --data '{
@@ -133,29 +135,29 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    }'
    ```
 
-   Wait until the state_name changes to `CHANNEL_READY`.
+   Wait until the `state_name` changes to `CHANNEL_READY`.
 
-   **Note: When the channel has just changed to the CHANNEL_READY state and you attempt to use send_payment, you may still encounter an error: `Failed to build route`. It is advisable to wait for some time before trying again.**
+   **Note: When the channel has just changed to the `CHANNEL_READY` state and you attempt to use `send_payment`, you may still encounter an error: `Failed to build route`. It is advisable to wait for some time before trying again.**
 
    ```json
    {"jsonrpc":"2.0","result":{"channels":[{"channel_id":"0x26ce85d57fb4a1a826cbf4862358862317a83b775090625550d8be12c6ce9569","is_public":true,"channel_outpoint":"0x9bb2a8a4bebaf793a235ba2ec87051ae0018b58736b6741df74009ca8101cb8d00000000","peer_id":"QmXen3eUHhywmutEzydCsW4hXBoeVmdET2FJvMX69XJ1Eo","funding_udt_type_script":null,"state":{"state_name":"CHANNEL_READY","state_flags":[]},"local_balance":"0xa32aef600","offered_tlc_balance":"0x0","remote_balance":"0x460913c00","received_tlc_balance":"0x0","latest_commitment_transaction_hash":"0x18ef541a5a195c0ea4715a7783964b3c4be8fba6bd25542e626f91ef1673e3e4","created_at":"0x195892d237f","enabled":true,"tlc_expiry_delta":"0x5265c00","tlc_fee_proportional_millionths":"0x3e8"}]},"id":3
    ```
 
-   **Why is the local_balance 0xa32aef600 (43,800,000,000) and the remote_balance 0x460913c00 (18,800,000,000)?**
+   **Why is the `local_balance 0xa32aef600 (43,800,000,000)` and the `remote_balance 0x460913c00 (18,800,000,000)`?**
 
-   This channel was established with nodeA contributing 500 ckb and node1 contributing 250 ckb.
+   This channel was established with nodeA contributing 500 CKB and node1 contributing 250 CKB.
 
-   Since each cell requires a minimum of 62 ckb, this amount is reserved to ensure that there are sufficient funds to cover cell occupancy costs during on-chain settlement (when the channel closes). These 62 ckb will be returned to their respective nodes at the time of on-chain settlement.
+   Since each Cell requires a minimum of 62 CKB, this amount is reserved to ensure that there are sufficient funds to cover Cell occupancy costs during on-chain settlement (when the channel closes). These 62 CKB will be returned to their respective nodes at the time of on-chain settlement.
 
    Actual available funds in the channel:
 
-   nodeA: 500 ckb - 62 ckb = 438 ckb (local_balance is 0xa32aef600)
+   nodeA: 500 CKB - 62 CKB = 438 CKB (local_balance is 0xa32aef600)
 
-   node1: 250 ckb - 62 ckb = 188 ckb (remote_balance is 0x460913c00)
+   node1: 250 CKB - 62 CKB = 188 CKB (remote_balance is 0x460913c00)
 
 4. Call the `new_invoice` API on node2 to generate an invoice
 
-   Set the amount to 0x5f5e100 (100,000,000 shannon), which is equivalent to 1 CKB. The payment_preimage should be a unique 32-byte hexadecimal number.
+   Set the amount to 0x5f5e100 (100,000,000 shannon), which is equivalent to 1 CKB. The `payment_preimage` should be a unique 32-byte hexadecimal number.
 
    ```bash
    # Generate a 32-byte random number and represent it in hexadecimal
@@ -215,7 +217,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
    Record the `invoice_address` from the response.
 
-5. Before nodeA sends the payment, first query the local_balance and remote_balance of each channel
+5. Before nodeA sends the payment, first query the `local_balance` and `remote_balance` of each channel
 
    nodeA ⟺ node1
 
@@ -416,7 +418,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    }
    ```
 
-   Find all entries in the response where `funding_udt_type_script` is null.
+   Find all entries in the response where `funding_udt_type_script` is `null`.
 
    ```json
    {"local_balance":"0x45a9b5cf3","remote_balance":"0x916e2dc010d"}
@@ -426,9 +428,9 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    {"local_balance":"0x48ab5acd200","remote_balance":"0x49087ca8c00"}
    ```
 
-6. Send a send_payment request to nodeA to pay node2
+6. Send a `send_payment` request to nodeA to pay node2
 
-   Pass in the previously recorded invoice_address to the `send_payment` request
+   Pass in the previously recorded `invoice_address` to the `send_payment` request
 
    ```bash
    curl -s --location 'http://127.0.0.1:8227' --header 'Content-Type: application/json' --data '{
@@ -462,7 +464,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
    Performing two additional `new_invoice` and `send_payment` requests, keeping the amount set to 0x5f5e100.
 
-8. Query the local_balance and remote_balance of each channel again
+8. Query the `local_balance` and `remote_balance` of each channel again
 
    nodeA ⟺ node1
 
@@ -500,7 +502,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
 9. Close the channel between nodeA and node1
 
-   Pass in the channel_id and the receiving address as parameters.
+   Pass in the `channel_id` and the receiving address as parameters.
 
    ```bash
    curl -s --location 'http://127.0.0.1:8227' --header 'Content-Type: application/json' --data '{
@@ -525,16 +527,16 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    { "jsonrpc": "2.0", "result": null, "id": 9 }
    ```
 
-   You can see on the CKB explorer that nodeA’s address received a new transaction of +496.99699462 CKB.
-   This indicates that multiple off-chain CKB transfers through Fiber nodes are eventually settled on-chain upon channel closure via the shutdown_channel request.
+   You can see on the CKB Explorer that nodeA’s address received a new transaction of +496.99699462 CKB.
+   This indicates that multiple off-chain CKB transfers through Fiber nodes are eventually settled on-chain upon channel closure via the `shutdown_channel` request.
 
-## Establishing a UDT Channel with Public Node 1
+## Establishing a UDT Channel with Public Node1
 
 1. Establish a network connection between nodeA and node1
 
 2. Establish a channel with 20 RUSD: nodeA (20 RUSD) ⟺ node1 (0)
 
-   _Node1 has auto_accept_amount for RUSD set to 20 RUSD, so please input 20 RUSD or more as the funding_amount._
+   Node1 has `auto_accept_amount` for RUSD set to 20 RUSD, so please input 20 RUSD or more as the `funding_amount`.
 
    ```bash
    curl -s --location 'http://127.0.0.1:8227' --header 'Content-Type: application/json' --data '{
@@ -617,7 +619,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
    Set the amount to 0x5f5e100 (100,000,000), which is equivalent to 1 RUSD.
 
-   Here, a unique payment_preimage is still required. You can generate one using: `echo "0x$(openssl rand -hex 32)"`
+   Here, a unique `payment_preimage` is still required. You can generate one using: `echo "0x$(openssl rand -hex 32)"`
 
    ```bash
    curl -s --location 'http://18.163.221.211:8227' --header 'Content-Type: application/json' --data '{
@@ -673,7 +675,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    }
    ```
 
-5. Before nodeA sends the payment, first query the local_balance and remote_balance of each channel
+5. Before nodeA sends the payment, first query the `local_balance` and `remote_balance` of each channel
 
    nodeA ⟺ node1
 
@@ -703,7 +705,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    {"local_balance":"0xc505f","remote_balance":"0x17486a97a1"}
    ```
 
-6. Send a send_payment request to nodeA to pay node2
+6. Send a `send_payment` request to nodeA to pay node2
 
    ```bash
    curl -s --location 'http://127.0.0.1:8227' --header 'Content-Type: application/json' --data '{
@@ -737,7 +739,7 @@ This document provides a user manual for the testnet public nodes of the Fiber N
 
    Performing two additional `new_invoice` and `send_payment` requests, keeping the amount set to 0x5f5e100.
 
-8. Query the local_balance and remote_balance of each channel again
+8. Query the `local_balance` and `remote_balance` of each channel again
 
    nodeA ⟺ node1
 
@@ -798,5 +800,5 @@ This document provides a user manual for the testnet public nodes of the Fiber N
    { "jsonrpc": "2.0", "result": null, "id": 9 }
    ```
 
-   You can see on the CKB explorer that nodeA’s address received a new transaction of +16.997 RUSD.
-   This indicates that multiple off-chain UDT transfers through Fiber nodes are eventually settled on-chain upon channel closure via the shutdown_channel request.
+   You can see on the CKB Explorer that nodeA’s address received a new transaction of +16.997 RUSD.
+   This indicates that multiple off-chain UDT transfers through Fiber nodes are eventually settled on-chain upon channel closure via the `shutdown_channel` request.

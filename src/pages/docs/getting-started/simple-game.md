@@ -5,7 +5,7 @@ title: "Build a Simple Game with Fiber micro-payment"
 
 ## Overview
 
-This tutorial will guide you through creating a simple [Phaser.js](https://phaser.io/) game that integrates with the Fiber testnet. You'll learn how to implement real-time token transfers within a game environment, enabling instant micro-payments based on in-game actions. This demonstrates how traditional game mechanics can be seamlessly enhanced with blockchain functionality.
+This tutorial will guide you through creating a simple [Phaser.js](https://phaser.io/) game that integrates with the Fiber Testnet. You'll learn how to implement real-time token transfers within a game environment, enabling instant micro-payments based on in-game actions. This demonstrates how traditional game mechanics can be seamlessly enhanced with blockchain functionality.
 
 <img class="max-w-[600px] mx-auto" src="/imgs/docs/simple-game/game-cover.png" alt="Game Cover" />
 
@@ -16,17 +16,17 @@ The full code of the game can be found in the [github repo](https://github.com/n
 Before getting started, make sure you have:
 
 - [Git](https://git-scm.com/), [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/)
-- Basic understanding of TypeScript and Fiber Network
+- Basic understanding of TypeScript and Fiber network
 - Two running Fiber nodes (see [Running a Node](/docs/getting-started/running-node))
 - An open payment channel between your two nodes (see [Basic Transfer](/docs/getting-started/basic-transfer))
-- Some [CKB testnet tokens](https://faucet.nervos.org/) in your payment channel
+- Some [CKB Testnet tokens](https://faucet.nervos.org/) in your payment channel
 
 ## Project Setup
 
 ### 1. Prepare two Fiber Nodes
 
-You need to setup and running two fiber testnet nodes locally, and make sure they have at least 500 CKB liquidity in their payment channels.
-It is highly recommended to follow the [Running a Node](/docs/getting-started/running-node) and [Basic Transfer](/docs/getting-started/basic-transfer) guides to set up your nodes first.
+You need to setup and running two fiber Testnet nodes locally, and make sure they have at least 500 CKB liquidity in their payment channels.
+It is highly recommended to follow the [Run a Fiber Node](/docs/getting-started/running-node) and [Basic Transfer Example](/docs/getting-started/basic-transfer) guides to set up your nodes first.
 
 In this tutorial, we assume the info for the two nodes are:
 
@@ -65,7 +65,7 @@ pnpm install
 
 ### 3. Set Up Vite Configuration
 
-Next, let edit the `vite.config.ts` file for bundling our two fiber local nodes since the RPC of nodes is not cors-enabled.
+Next, let's edit the `vite.config.ts` file for bundling our two fiber local nodes since the RPC of nodes is not cors-enabled.
 
 ```typescript
 import { defineConfig } from "vite";
@@ -347,17 +347,17 @@ export async function payBossPoints(
 
 </details>
 
-Pay attention to the `payPlayerPoints` and `payBossPoints` functions, it will help us to pay CKB to each other when the player hit the enemy ship and the boss hit the player.
+Pay attention to the `payPlayerPoints` and `payBossPoints` functions — they handle CKB payments between players when the player hits the enemy ship or when the boss hits the player.
 
-We defined that the amount of CKB to pay is 1 CKB per point in `amountPerPoint`, meaning that if the player score 10 points, the boss will pay 10 CKB to the player and vice versa. The payment is done in real-time with the Fiber Network.
+We defined that payment rate as 1 CKB per point in `amountPerPoint`, meaning that if the player score 10 points, the boss will pay 10 CKB to the player and vice versa. All payments are made in real-time through the Fiber network.
 
 ## Integrating Micro-payment with Game Mechanics
 
-Now that we have the Fiber integration set up, let's integrate it with our Phaser.js game.
+Now that the Fiber integration is set up, let's integrate it with our Phaser.js game.
 
 ### 1. Edit the Main Scene
 
-The main file to edit is `src/scenes/MainScene.ts`, let's add some property in the `MainScene` class to host the Fiber nodes and the score.
+The main file to edit is `src/scenes/MainScene.ts`. We'll start by adding some properties in the `MainScene` class to host the Fiber nodes and track the score.
 
 ```typescript
 + import { prepareNodes, payPlayerPoints, payBossPoints } from "../fiber";
@@ -372,7 +372,7 @@ The main file to edit is `src/scenes/MainScene.ts`, let's add some property in t
 +     playerPoints: number = 0;
 ```
 
-Then we need to initialize the Fiber nodes and the score in the `init` function. Note that we need to change the `init` to async function to wait for the Fiber nodes to be initialized.
+Next, we need to initialize the Fiber nodes and the score in the `init` function. Note that `init` needs to be changed to an async function so that we can await for the Fiber nodes initialization.
 
 ```typescript
 async init(): Promise<void> {
@@ -397,7 +397,7 @@ async init(): Promise<void> {
     }
 ```
 
-Next, let's look at the `setupCollisions` function, we need to pay CKB to the player when the player hit the enemy ship and the boss when the boss hit the player.
+Next, let's look at the `setupCollisions` function. We need to pay CKB to the player when the player hits the enemy ship, and to the boss when the boss hits the player.
 
 ```typescript
 setupCollisions(): void {
@@ -689,8 +689,8 @@ export class MainScene extends Scene {
 ### 2. Edit the GameOver Scene
 
 The `GameOverScene` is the scene that will be launched when the game is over.
-The original code only display the final scoring points of the player,
-here We need to display the earn/lose CKB amount to the scene too.
+The original code only display the final scoring points of the player.
+We need to display the earn/lose CKB amount to the scene too.
 
 <details>
 <summary>View full code of src/scenes/GameOverScene.ts</summary>
@@ -822,19 +822,19 @@ All good now! Let's run your game!
 pnpm dev
 ```
 
-Note that before running your game, make sure your Fiber nodes are running and have an open payment channel between them. You can follow the [Running a Node](/docs/getting-started/running-node) and [Basic Transfer](/docs/getting-started/basic-transfer) guides to set up your nodes.
+Before running your game, make sure your Fiber nodes are running and have an open payment channel between them. You can follow the [Run a Fiber Node](/docs/getting-started/running-node) and [Basic Transfer Example](/docs/getting-started/basic-transfer) guides to set up your nodes.
 
-If everything goes well, you should be able to click and play the game like this:
+If everything is set up correctly, you should be able to click and play the game like this:
 
 <img class="max-w-[600px] mx-auto" src="/imgs/docs/simple-game/game-running.png" alt="Game Running" />
 
-Open the browser console, you should be able to see the payment logs. And when the game is over, you'll see the final scores and the payment info like this:
+Open the browser console to view the payment logs. When the game is over, you'll see the final scores along with the payment info, like this:
 
 <img class="max-w-[600px] mx-auto" src="/imgs/docs/simple-game/game-over.png" alt="Game Over" />
 
 ## Conclusion
 
-In this tutorial, you've learned how to integrate the Fiber Network with a Phaser.js game to enable real-time token transfers based on in-game actions. This approach opens up new possibilities for blockchain-based gaming, including:
+In this tutorial, you've learned how to integrate the Fiber network with a Phaser.js game to enable real-time token transfers based on in-game actions. This approach opens up new possibilities for blockchain-based gaming, including:
 
 - Real-time microtransactions without gas fees
 - Play-to-earn mechanics with instant payments
@@ -845,12 +845,12 @@ By leveraging Fiber's Layer 2 scaling solution, you can build games with blockch
 For a production environment and more advanced use cases, consider implementing:
 
 - Channel opening logic with player matching
-- Final scores are settled on-chain when the game ends including proper channel close
+- On-chain settlement of final scores when the game ends, including proper channel closure
 - Error handling for insufficient channel balance
 - Security measures for channel management
 - Multi-player token pools
 - Conditional payments based on game achievements
-- Asset trading through Fiber Network channels
+- Assets trading through Fiber network channels
 - ...
 
 Happy coding, and enjoy building your blockchain-enabled games!

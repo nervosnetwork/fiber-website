@@ -1,9 +1,11 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "Decoding Fiber: A Scalable, Privacy-by-Default P2P Finance Network with Source Code Explained"
+title: Architecture & Module
+description: A source code-level exploration of Fiber's architecture and key modules.
+category: Tech Explanation
 ---
 
-# Overview
+## Overview
 
 Fiber is a Lightning-compatible peer-to-peer payment and swap network built on CKB, the base layer of [Nervos Network](https://www.nervos.org/). Fiber is designed to enable fast, secure, and efficient off-chain payment solutions, particularly for **micropayments** and **high-frequency** transactions. 
 
@@ -16,21 +18,21 @@ Inspired by Bitcoin’s Lightning Network, Fiber leverages CKB’s unique archit
 
 This article presents a **source code-level** exploration of Fiber's architecture, key modules, as well as an overview of its future development plans.
 
-# **Prerequisites**
+## **Prerequisites**
 
 - **Rust and Actor Framework**: Fiber is entirely implemented in Rust and follows the [Actor Model](https://github.com/slawlor/ractor) programming paradigm. It relies on the community-maintained [slawlor/ractor](https://github.com/slawlor/ractor) framework.
 - **Lightning Network**: Fiber follows the core principles of Lightning Network. Resources such as [*Mastering the Lightning Network*](https://github.com/lnbook/lnbook) and [BOLTs](https://github.com/lightning/bolts) are highly recommended for understanding the concepts.
 - **CKB Transactions and Contracts**: Fiber interacts with CKB nodes via RPC, making a solid understanding of [CKB contract](https://docs.nervos.org/docs/script/intro-to-script) development essential.
 
-# Key Modules
+## Key Modules
 
 At a high level, a Fiber node consists of several key modules:
 
-![image.png](/imgs/docs/high-level/image.png)
+![Fiber node module.png](/imgs/docs/high-level/image.png)
 
 - Obsolete image
     
-    ![Pasted image 20250206211458.png](/imgs/docs/high-level/Pasted_image_20250206211458.png)
+![Pasted image 20250206211458.png](/imgs/docs/high-level/Pasted_image_20250206211458.png)
     
 
 **Key Modules Overview**
@@ -221,12 +223,12 @@ During **TLC interaction**s in the channel, the watchtower receives `RemoteComm
 
 Watchtower's **penalty mechanism** ensures that old commitment transactions are not used in a on-chain transaction by [comparing the `commitment_number`](https://github.com/nervosnetwork/fiber/blob/b5c38a800e94aaa368a4c8a8699f5db0c08ecfbd/src/watchtower/actor.rs#L266). If a violation is detected, the watchtower constructs a **revocation transaction** and submits it on-chain to penalize the offender. Otherwise, it constructs and sends a **settlement transaction**.
 
-# **Other Technical Decisions**
+## **Other Technical Decisions**
 
 - **Storage**: We use RocksDB as the storage layer, leveraging its scheme-less storage design to simplify encoding and decoding structs with `serde`. Data migration remains a challenge, which we address by [this standalone program](https://github.com/nervosnetwork/fiber/blob/develop/migrate/src/main.rs).
 - **Serialization**: Messages between nodes are serialized and deserialized using [Molecule](https://github.com/nervosnetwork/molecule), bringing efficiency, compatibility, and security advantages. It ensures determinism, meaning the same message serializes identically on all nodes, which is crucial for signature generation and verification.
 
-# **Future Prospects**
+## **Future Prospects**
 
 Fiber is still in the early stages of active development. Looking ahead, we plan to make further improvements in the following areas:
 

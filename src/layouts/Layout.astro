@@ -34,5 +34,13 @@ import Navbar from "./Navbar.astro";
 		<Navbar />
 		<slot />
 		<Footer />
+
+		<!-- Custom cursor on button -->
+		<div id="custom-cursor" class="custom-cursor hidden">
+			<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+				<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4" cx="24" cy="24" r="16"></circle>
+			</svg>
+		</div>
+		<script src="/src/scripts/custom-cursor.js" defer></script>
 	</body>
 </html>

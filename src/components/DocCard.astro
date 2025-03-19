@@ -1,0 +1,39 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+	iconSrc: string;
+	title: string;
+	description: string;
+	cardBg: "yellow" | "blue";
+	external?: boolean;
+	link: string;
+}
+
+const {
+	iconSrc,
+	title,
+	description,
+	cardBg,
+	external = false,
+	link,
+} = Astro.props;
+---
+
+
+<div class={`px-5 py-10 rounded-xl flex flex-col gap-4 justify-center align-middle items-start ${cardBg === 'blue' ? `bg-blue` : `bg-yellow`} border-1 border-border-black`}>
+    <div class="flex flex-col gap-5">
+        <div class={`w-14 h-14 ${cardBg === 'blue' ? 'bg-yellow text-white' : 'bg-blue-dark text-blue-dark'} rounded flex justify-center items-center`}>
+        <img class="w-8 h-8" src={`/icons/${iconSrc}.svg`} alt={`${iconSrc}`} />
+    </div>
+    <h3 class={`${cardBg === 'blue' ?  `text-primary` : `text-blue-dark`}`}>{title}</h3>
+    </div>
+    <div class="text-body1">{description}</div>
+    <Button
+        bg={cardBg === 'blue' ? 'bg-yellow' : 'bg-blue-dark'}
+        textColor={cardBg === 'blue' ? 'text-primary' : 'text-white'} 
+        label="Explore"
+        external={external} 
+        link={link}
+    />
+</div>

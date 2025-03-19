@@ -1,11 +1,12 @@
 ---
 layout: ../../../layouts/DocLayout.astro
-title: "A Basic Example: Transfer CKB between Two Nodes"
+title: Basic Transfer Example
+description: Learn how to set up and execute transfers between two nodes
 ---
 
 ## Overview
 
-This guide walks you through setting up and executing a basic token ([CKB](https://explorer.nervos.org/)) transfer between two nodes in the Fiber testnet. This is a fundamental example that demonstrates the core functionality of the Fiber Channel Network.
+This guide walks you through setting up and executing a basic token ([CKB](https://explorer.nervos.org/)) transfer between two nodes on the Fiber Testnet. This is a fundamental example that demonstrates the core functionality of the Fiber Channel Network.
 
 ## Prerequisites
 
@@ -59,7 +60,7 @@ ckb-cli account export --lock-arg <lock_arg> --extended-privkey-path ./ckb/expor
 head -n 1 ./ckb/exported-key > ./ckb/key
 ```
 
-You can get testnet funds from faucets: [https://faucet.nervos.org](https://faucet.nervos.org/).
+You can get Testnet funds from faucets: [https://faucet.nervos.org](https://faucet.nervos.org/).
 
 ### 4. Configure Ports
 
@@ -74,7 +75,7 @@ Below is an example of the `config.yml` file, take a note on the `listening_addr
 <summary>View complete config.yml</summary>
 
 ```sh
-# This configuration file only contains the necessary configurations for the testnet deployment.
+# This configuration file only contains the necessary configurations for the Testnet deployment.
 # All options' descriptions can be found via `fnn --help` and be overridden by command line arguments or environment variables.
 fiber:
   listening_addr: "/ip4/127.0.0.1/tcp/8228"
@@ -319,7 +320,7 @@ curl -s -X POST \
   }' http://localhost:8227
 ```
 
-Once the channel is successfully closed, there will be a layer 1 transaction on the chain to reclaim the locked CKB. The multiple off-chain payments between the two nodes are also settled in this layer 1 transaction. You can check the transaction details in[ CKB testnet explorer](https://testnet.explorer.nervos.org/).
+Once the channel is successfully closed, there will be a layer 1 transaction on the chain to reclaim the locked CKB. The multiple off-chain payments between the two nodes are also settled in this layer 1 transaction. You can check the transaction details in [CKB Testnet Explorer](https://testnet.explorer.nervos.org/).
 
 ## Important Notes
 

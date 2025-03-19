@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ScrollList from "../components/ScrollList.astro";
 import CaseCard from "../components/CaseCard.astro";
+import Button from "../components/Button.astro";
 
 const scrollingItems = [
 	"Faster",
@@ -51,7 +52,7 @@ const buildCaseList = [
 ---
 
 <Layout>
-  <div class="p-5 md:p-20">
+  <div class="p-5 md:p-10 lg:p-20">
     <div
       class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
     >
@@ -81,14 +82,13 @@ const buildCaseList = [
           Enable instant settlements with minimal fees, transforming online
           retail payment processing.
         </div>
-        <a
-          target="_blank"
-          href="https://fiber-pay-demo.vercel.app/invoices/shopify/5708053708977"
-          class="bg-blue-dark text-white px-2 py-4 rounded-3xl w-full flex justify-center items-center align-middle gap-2 cursor-pointer"
-        >
-          <h4>Demo</h4>
-          <img class="w-6" src="/icons/link.svg" alt="" />
-        </a>
+        <Button
+          bg={'bg-blue-dark'}
+          textColor={'text-white'}
+          label="Demo"
+          external
+          link={"https://github.com/nervosnetwork/fiber-website/tree/main/src/pages/docs"}
+        />
       </div>
 
       <div
@@ -106,20 +106,19 @@ const buildCaseList = [
           Power AI agents with seamless micropayments for pay-as-you-go access
           to data and services.
         </div>
-        <a
-          target="_blank"
-          href="https://github.com/elizaOS/eliza/pull/2084"
-          class="bg-purple-dark text-white px-2 py-4 rounded-3xl w-full flex justify-center items-center align-middle gap-2 cursor-pointer"
-        >
-          <h4>Demo</h4>
-          <img class="w-6" src="/icons/link.svg" alt="" />
-        </a>
+        <Button
+          bg={'bg-purple-dark'}
+          textColor={'text-white'}
+          label="Demo"
+          external
+          link={"https://github.com/nervosnetwork/fiber-website/tree/main/src/pages/docs"}
+        />
       </div>
     </div>
   </div>
   <ScrollList items={scrollingItems} level="secondary" />
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8 p-5 md:p-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8 p-5 md:p-10 lg:p-20">
     {
       buildCaseList.map((item) => (
         <CaseCard
