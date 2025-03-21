@@ -15,6 +15,7 @@ const repeatedItems = [...items, ...items]; // Duplicate items for seamless loop
 ---
 
 <div class="w-full flex items-end">
+  <!-- Left Scroller -->
   <div
     class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
   >
@@ -25,16 +26,17 @@ const repeatedItems = [...items, ...items]; // Duplicate items for seamless loop
         repeatedItems.map((item, index) => (
           <h4 class="inline-block">
             {item}
-            {index !== repeatedItems.length - 1 && <span class="mx-5">✦</span>}
+            {(index + 1) % items.length !== 0 && <span class="mx-5">✦</span>}
           </h4>
         ))
       }
     </div>
   </div>
 
-  <!-- Center section with Fiber text and icon -->
+  <!-- Center Icon -->
   <img src="/icons/light-bulb.svg" alt="Fiber" class="h-auto w-[218px]" />
 
+  <!-- Right Scroller -->
   <div
     class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
   >
@@ -45,7 +47,7 @@ const repeatedItems = [...items, ...items]; // Duplicate items for seamless loop
         repeatedItems.map((item, index) => (
           <h4 class="inline-block">
             {item}
-            {index !== repeatedItems.length - 1 && <span class="mx-5">✦</span>}
+            {(index + 1) % items.length !== 0 && <span class="mx-5">✦</span>}
           </h4>
         ))
       }
@@ -54,27 +56,12 @@ const repeatedItems = [...items, ...items]; // Duplicate items for seamless loop
 </div>
 
 <style>
-  .animate-scrolling-left {
-    animation: scroll-left 20s linear infinite; /* Adjust speed as needed */
-  }
-  .animate-scrolling-right {
-    animation: scroll-right 20s linear infinite; /* Adjust speed as needed */
-  }
-  .animate-scrolling-left:hover {
-    animation-play-state: paused !important;
-  }
-  .animate-scrolling-right:hover {
-    animation-play-state: paused !important;
-  }
-
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(
-        calc(-50%)
-      ); /* Scroll half the duplicated content */
+      transform: translateX(-50%);
     }
   }
 
@@ -83,9 +70,19 @@ const repeatedItems = [...items, ...items]; // Duplicate items for seamless loop
       transform: translateX(0);
     }
     100% {
-      transform: translateX(
-        calc(+50%)
-      ); /* Scroll half the duplicated content */
+      transform: translateX(50%);
     }
+  }
+
+  .animate-scrolling-left {
+    animation: scroll-left 20s linear infinite;
+  }
+  .animate-scrolling-right {
+    animation: scroll-right 20s linear infinite;
+  }
+
+  .animate-scrolling-left:hover,
+  .animate-scrolling-right:hover {
+    animation-play-state: paused;
   }
 </style>
