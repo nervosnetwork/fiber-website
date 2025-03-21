@@ -1,54 +1,90 @@
 ---
-interface Props {
-	level?: "primary" | "secondary" | "tertiary";
-	items: string[];
-}
-
-const { level = "primary", items } = Astro.props;
-const bgColor =
-	level === "primary"
-		? "bg-yellow-light"
-		: level === "secondary"
-			? "bg-blue-light"
-			: "bg-purple-light";
-
+const bgColor = "bg-purple-light";
+const items = [
+	"Faster",
+	"Cheaper",
+	"P2P",
+	"Multi-Asset Support",
+	"Interoperability",
+	"Faster",
+	"Cheaper",
+	"P2P",
+	"Multi-Asset",
+];
 const repeatedItems = [...items, ...items]; // Duplicate items for seamless looping
 ---
 
-<div
-  class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
->
+<div class="w-full flex items-end">
   <div
-    class="animate-scrolling whitespace-nowrap w-max transition-transform duration-20000 flex align-middle items-center justify-center gap-5"
+    class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
   >
-    {
-      repeatedItems.map((item, index) => (
-        <h4 class="inline-block">
-          {item}
-          {index !== repeatedItems.length - 1 && (
-            <span class="mx-5">✦</span>
-          )}
-        </h4>
-      ))
-    }
+    <div
+      class="animate-scrolling-left whitespace-nowrap w-max transition-transform duration-20000 flex align-middle items-center justify-center gap-5"
+    >
+      {
+        repeatedItems.map((item, index) => (
+          <h4 class="inline-block">
+            {item}
+            {index !== repeatedItems.length - 1 && <span class="mx-5">✦</span>}
+          </h4>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Center section with Fiber text and icon -->
+  <img src="/icons/light-bulb.svg" alt="Fiber" class="h-auto w-[218px]" />
+
+  <div
+    class={`h-[56px] lg:h-[61px] flex flex-col align-middle items-center justify-center overflow-hidden relative border-y-1 border-border-black ${bgColor}`}
+  >
+    <div
+      class="animate-scrolling-right whitespace-nowrap w-max transition-transform duration-20000 flex align-middle items-center justify-center gap-5"
+    >
+      {
+        repeatedItems.map((item, index) => (
+          <h4 class="inline-block">
+            {item}
+            {index !== repeatedItems.length - 1 && <span class="mx-5">✦</span>}
+          </h4>
+        ))
+      }
+    </div>
   </div>
 </div>
 
 <style>
-  .animate-scrolling {
-    animation: scroll 20s linear infinite; /* Adjust speed as needed */
+  .animate-scrolling-left {
+    animation: scroll-left 20s linear infinite; /* Adjust speed as needed */
   }
-  .animate-scrolling:hover {
+  .animate-scrolling-right {
+    animation: scroll-right 20s linear infinite; /* Adjust speed as needed */
+  }
+  .animate-scrolling-left:hover {
+    animation-play-state: paused !important;
+  }
+  .animate-scrolling-right:hover {
     animation-play-state: paused !important;
   }
 
-  @keyframes scroll {
+  @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
     100% {
       transform: translateX(
         calc(-50%)
+      ); /* Scroll half the duplicated content */
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(
+        calc(+50%)
       ); /* Scroll half the duplicated content */
     }
   }

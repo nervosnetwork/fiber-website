@@ -5,19 +5,6 @@ import DocCard from "../../components/DocCard.astro";
 import Layout from "../../layouts/Layout.astro";
 import Button from "../../components/Button.astro";
 
-// TODO: Update Scrolling Behavior
-const scrollingItems = [
-	"Faster",
-	"Cheaper",
-	"P2P",
-	"Multi-Asset Support",
-	"Interoperability",
-	"Faster",
-	"Cheaper",
-	"P2P",
-	"Multi-Asset",
-];
-
 const gettingStartedDocs = [
 	{
 		title: "Run a Fiber Node",
@@ -184,8 +171,7 @@ const networkResources = [
     </div>
   </div>
 
-  <!-- TODO: Replace the scrolling behavior -->
-  <ScrollList items={scrollingItems} level="secondary" />
+  <ScrollList />
 
  <!-- Awesome Fiber Section -->
   <div class="p-5 md:p-10 lg:p-20">
