@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FAQItem from "../components/FAQItem.astro";
+
+const qaList = [
+	{
+		title: "What is the Fiber Network?",
+		answer:
+			"The Fiber network is a protocol designed to enhance the functionality, programmability, and connectivity of the Lightning Network. Built on the CKB blockchain, it is fully compatible with the Lightning Network at the protocol design level, creating a seamless connection between Bitcoin and CKB on Layer 2. This integration enables the smooth flow of transactions across both networks, making micropayments faster and cost-efficient. Tokens on the Fiber network are highly programmable, supporting the transfer of various assets including stablecoins. The Fiber network provides Bitcoin and Lightning Network users with secure off-chain payments, offering low transaction fees, high programmability, and enhanced interoperability.",
+	},
+	{
+		title: "What is the Lightning Network?",
+		answer:
+			"The Lightning Network is a payment channel network that enhances Bitcoin's scalability by enabling fast, low-cost transactions. It allows users to exchange payments bidirectionally within a channel, minimizing the need for frequent on-chain transactions. When a direct channel is unavailable, payments can be securely routed through multiple intermediaries along an encrypted payment path. By facilitating instant and efficient micropayments, the Lightning Network has emerged as a crucial solution for scaling Bitcoin and supporting everyday transactions.",
+	},
+	{
+		title: "What is a Payment Channel Network?",
+		answer:
+			"A payment channel is a vital Layer 2 solution for blockchains, enabling users to make instant, secure transactions with significantly lower fees than on-chain transactions. A payment channel is established between two users, and a network of such channels allows users without a direct connection to conduct off-chain payments through intermediaries.",
+	},
+];
+---
+
+<Layout>
+  <div class="p-5 md:p-10 lg:p-20">
+    <div
+      class="bg-cyan rounded-xl p-8 mx-auto border-1 border-border-black text-center mb-6"
+    >
+      <h1>FAQ</h1>
+    </div>
+
+    <div
+      class="bg-purple-dark p-[20px] rounded-xl border-1 border-border-black flex justify-center text-white text-center mb-8"
+    >
+      <h3>
+        Frequently Asked Questions about Fiber Network and its integration with
+        Lightning Network
+      </h3>
+    </div>
+
+    {qaList.map((qa) => <FAQItem title={qa.title} answer={qa.answer} />)}
+  </div>
+</Layout>
