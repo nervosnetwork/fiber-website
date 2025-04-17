@@ -45,6 +45,24 @@ cd /folder-to/my-fnn
 
 FNN includes built-in wallet functionality for signing funding transactions. You'll need to create or import a private key:
 
+create a new ckb account and get the `lock_arg` of the new account
+
+```sh
+ckb-cli account new
+
+# example output
+# address
+#   mainnet: ckb1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqtp83cu4pk8nysm9dngxezw546dyr5w8esx7rlyt
+#   testnet: ckt1qzda0cr08m85hc8jlnfp3zer7xulejywt49kt2rr0vthywaa50xwsqtp83cu4pk8nysm9dngxezw546dyr5w8esgvgswn
+# address(deprecated):
+#   mainnet: ckb1qyqxz0r3e2rv0xfpk2mxsdjyaft56g8gu0nq8cjjeq
+#   testnet: ckt1qyqxz0r3e2rv0xfpk2mxsdjyaft56g8gu0nq6avd4u
+# lock_arg: 0x613c71ca86c79921b2b6683644ea574d20e8e3e6
+# lock_hash: 0x1c506178212949e961f5949c916f70f5ba0f3b89b14ce2608f02201a41eb3ef7
+```
+
+Then export the existing key
+
 ```sh
 mkdir ckb
 # Export an existing key using ckb-cli
