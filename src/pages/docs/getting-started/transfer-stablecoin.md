@@ -28,9 +28,10 @@ If you prefer to build the binary by yourself, you will need to install [Rust](h
 git clone https://github.com/nervosnetwork/fiber.git
 cd fiber
 cargo build --release
+cp target/release/fnn ./
 ```
 
-This document used the [v0.4.0 binary](https://github.com/nervosnetwork/fiber/releases/tag/v0.4.0) throughout the guide.
+This document used the [v0.5.0 binary](https://github.com/nervosnetwork/fiber/releases/tag/v0.5.0) throughout the guide.
 
 ### 2. Configure Fiber Nodes
 
@@ -53,7 +54,7 @@ cp target/release/fnn node3/
 cp config/testnet/config.yml node3/
 ```
 
-Each node needs its own configuration:
+Each node needs its **own private key** for signing transactions:
 
 ```sh
 # In each node directory
@@ -61,9 +62,12 @@ mkdir ckb
 # Use ckb-cli to export or generate keys
 ckb-cli account export --lock-arg <lock_arg> --extended-privkey-path ./ckb/exported-key
 head -n 1 ./ckb/exported-key > ./ckb/key
+# Modify key permissions
+chmod 600 ./ckb/key
 ```
 
-You can get Testnet funds from Faucets:
+Each node requires a different key. You can get Testnet funds from Faucets.
+(The RUSD faucet cannot directly fill an address, so you can first claim 20RUSD through a wallet like joyid, then transfer it to nodeA’s address from [the joyid wallet page](https://testnet.joyid.dev/).)
 
 - [https://faucet.nervos.org](https://faucet.nervos.org/) for CKB
 - [https://testnet0815.stablepp.xyz/stablecoin](https://testnet0815.stablepp.xyz/stablecoin) for RUSD
@@ -82,7 +86,7 @@ Below is an example of the `config.yml` file, take a note on the `listening_addr
 <summary>View complete config.yml</summary>
 
 ```sh
-# This configuration file only contains the necessary configurations for the Testnet deployment.
+# This configuration file only contains the necessary configurations for the testnet deployment.
 # All options' descriptions can be found via `fnn --help` and be overridden by command line arguments or environment variables.
 fiber:
   listening_addr: "/ip4/127.0.0.1/tcp/8228"
@@ -103,28 +107,30 @@ fiber:
         hash_type: type
         args: 0x
       cell_deps:
-        - out_point:
-            tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b
-            index: 0x1
-          dep_type: code
-        - out_point:
-            tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b # ckb_auth
-            index: 0x0
-          dep_type: code
+        - type_id:
+            code_hash: 0x00000000000000000000000000000000000000000000000000545950455f4944
+            hash_type: type
+            args: 0x3cb7c0304fe53f75bb5727e2484d0beae4bd99d979813c6fc97c3cca569f10f6
+        - cell_dep:
+            out_point:
+              tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b # ckb_auth
+              index: 0x0
+            dep_type: code
     - name: CommitmentLock
       script:
         code_hash: 0x740dee83f87c6f309824d8fd3fbdd3c8380ee6fc9acc90b1a748438afcdf81d8
         hash_type: type
         args: 0x
       cell_deps:
-        - out_point:
-            tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b
-            index: 0x2
-          dep_type: code
-        - out_point:
-            tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b #ckb_auth
-            index: 0x0
-          dep_type: code
+        - type_id:
+            code_hash: 0x00000000000000000000000000000000000000000000000000545950455f4944
+            hash_type: type
+            args: 0xf7e458887495cf70dd30d1543cad47dc1dfe9d874177bf19291e4db478d5751b
+        - cell_dep:
+            out_point:
+              tx_hash: 0x5a5288769cecde6451cb5d301416c297a6da43dc3ac2f3253542b4082478b19b #ckb_auth
+              index: 0x0
+            dep_type: code
 
 rpc:
   # By default RPC only binds to localhost, thus it only allows accessing from the same machine.
@@ -141,9 +147,10 @@ ckb:
         hash_type: type
         args: 0x878fcc6f1f08d48e87bb1c3b3d5083f23f8a39c5d5c764f253b55b998526439b
       cell_deps:
-        - tx_hash: 0xed7d65b9ad3d99657e37c4285d585fea8a5fcaf58165d54dacf90243f911548b
-          index: 0
-          dep_type: code
+        - type_id:
+            code_hash: 0x00000000000000000000000000000000000000000000000000545950455f4944
+            hash_type: type
+            args: 0x97d30b723c0b2c66e9cb8d4d0df4ab5d7222cbb00d4a9a2055ce2e5d7f0d8b0f
       auto_accept_amount: 1000000000
 
 services:
@@ -184,7 +191,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "connect_peer",
     "params": [
       {
-        "address": "/ip4/127.0.0.1/tcp/8238/p2p/QmaQSn11jsAXWLhjHtZ9EVbauD88sCmYzty3GmYcoVWP2j"
+        "address": "/ip4/127.0.0.1/tcp/8238/p2p/QmSRjNWQ1ZFwniCdBfb9xHG16fCwzKMwBJ5o2JL5wKb22X"
       }
     ]
   }'
@@ -203,8 +210,8 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "open_channel",
     "params": [
       {
-        "peer_id": "QmS8y8sAoF7DH89st7fquUVW9Y1W3cgcnPgWjPe6tcm1dw",
-        "funding_amount": "0x5f5e100",
+        "peer_id": "QmSRjNWQ1ZFwniCdBfb9xHG16fCwzKMwBJ5o2JL5wKb22X",
+        "funding_amount": "0x3b9aca00",
         "public": true,
         "funding_udt_type_script": {
           "code_hash": "0x1142755a044bf2ee358cba9f2da187ce928c91cd4dc8692ded0337efa677d21a",
@@ -221,7 +228,7 @@ The response will contain a temporary channel ID:
 ```sh
 {
   "jsonrpc": "2.0",
-  "result": {"temporary_channel_id": "0xbf1b507e730b08024180ed9cb5bb3655606d3a89e94476033cf34d206d352751"},
+  "result": {"temporary_channel_id": "0x4a62f1963882e0a7476582bd397ca2a1faf86c202e5dc4e6b66d7914ce9a2761"},
   "id": 42
 }
 ```
@@ -239,7 +246,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "list_channels",
     "params": [
       {
-        "peer_id": "QmaQSn11jsAXWLhjHtZ9EVbauD88sCmYzty3GmYcoVWP2j"
+        "peer_id": "QmSRjNWQ1ZFwniCdBfb9xHG16fCwzKMwBJ5o2JL5wKb22X"
       }
     ]
   }'
@@ -262,11 +269,12 @@ curl --location 'http://127.0.0.1:8237' \
     "method": "new_invoice",
     "params": [
       {
-        "amount": "0x5f5e100",
-        "currency": "Fibb",
+        "amount": "0x3b9aca00",
+        "currency": "Fibt",
         "description": "test invoice generated by node2",
-        "expiry": "0xe10",
         "final_cltv": "0x28",
+        "payment_preimage": "0x5d3baba4cc5355dbecd27d558a2849604df15d7474144a5dfedb669cb8039cbd",
+        "expiry": "0xe10",
         "hash_algorithm": "sha256",
         "udt_type_script": {
           "code_hash": "0x1142755a044bf2ee358cba9f2da187ce928c91cd4dc8692ded0337efa677d21a",
@@ -278,27 +286,28 @@ curl --location 'http://127.0.0.1:8237' \
   }'
 ```
 
+`payment_preimage` is a set of random bytes and can be generated using `openssl rand -hex 32`.
+
 The response will include an invoice address that can be used for payment:
 
 ```json
 {
   "jsonrpc": "2.0",
   "result": {
-    "invoice_address": "fibb1000000001qgxlna32kkmczxzat8almqgp23lgsdfjzja4wp7n5mxsld70njckjxdrp80f59yqln8xalfh7stu653qs30mrk720ve9et7fdrat97uvdmj783j7ruw872t60v7pe6hfjutenr4njadjgacmfen0l46au9wfpe5sg5d6dpqmvjlaf88equldr8zlpum8v2twgrsedjfkt8ejq2tdarqmac57rx4mkrxashe6nm0xu59rzaqm9dxv3vzc9jc6890ccfwqlucswsn62p3yafgd7gep5x2p8uda0kxap40mglarrrm0cjcuaq48q07s9qg33kuhudnttfhpg5vy5sndgtk6z9lvtcgquyrv0tk9gykd5r8t8yxh8d40z96ce2uwrcmscakrxhtl2eu7k3ltusk77sy5",
+    "invoice_address": "fibt10000000001p98tjdhf7emczxzat8lhtag2ulnd9vthgash247nujysgazu2zqd7ava6w7t7e5fj0l3rl34zuhjfjsqp7tcemg83rkpxztpv0qrtmxtjua5uxsqp34tnjq4uvyh0zc9s9pp4hyxuauelxfgwh8sfwhs7q5aan9kk9ujy0s08j22eu3gzya3dusksyqfs64kswc7v77wcfp2wuql0f2z754ecxsglw2fnsdc2cs38p7p9q7r7grm5389sdnw25c9v04ks3t34f04j6t7tgps7nnm9vr3tf5x5mk73lsx3zgaz3jl7a2h25gerjhht99ucc9a9tw6dmlyzy2uqjuhh5kehzsevjp8qym5vxuzamd9vm9jpvlhacjep4pawls5czkuq39xfgqqz8f99e0xlhf9kdauvhqcpxep0f3lv8vmqkrc0uu955l2jy5907cxlxrqncg7cz9ekryflhwqxlzj5h7fmf4s5vlyy8rhk5vgptqsw67",
     "invoice": {
-      "currency": "Fibb",
-      "amount": "0x5f5e100",
-      "signature": null,
+      "currency": "Fibt",
+      "amount": "0x3b9aca00",
+      "signature": "110506090800000207090505190f061f170905160d1d1c0c170018010619010f09111f0c070c1b001603180f1c1c0514141f0a120414050f1e18061f0603001318081e18020519160304091f170e00061f021214171e091b091510140c1f040407031716140c0801",
       "data": {
-        "timestamp": "0x1924bd772e4",
-        "payment_hash": "0x8f804fca8b611c43e05c82f23141faee236b6e0b7364c2f8b1b569e4f800b04a",
+        "timestamp": "0x19662411ac8",
+        "payment_hash": "0x98eed206ca5637624796212d29017aaec97700708d5b08f031ab21b3708a1d1f",
         "attrs": [
-          {"Description": "test invoice generated by node2"},
-          {"ExpiryTime": {"secs": 3600, "nanos": 0}},
-          {"FinalHtlcMinimumCltvExpiry": 40},
-          {"UdtScript": "0x550000001000000030000000310000001142755a044bf2ee358cba9f2da187ce928c91cd4dc8692ded0337efa677d21a0120000000878fcc6f1f08d48e87bb1c3b3d5083f23f8a39c5d5c764f253b55b998526439b"},
-          {"HashAlgorithm": "sha256"},
-          {"PayeePublicKey": "03c5627399cd37db17f7281926f7bc514d4687b4f541d4c52643d9d42c9a77ba68"}
+          {"description": "test invoice generated by node2"},
+          {"expiry_time": "0xe10"},
+          {"udt_script": "0x550000001000000030000000310000001142755a044bf2ee358cba9f2da187ce928c91cd4dc8692ded0337efa677d21a0120000000878fcc6f1f08d48e87bb1c3b3d5083f23f8a39c5d5c764f253b55b998526439b"},
+          {"hash_algorithm": "sha256"},
+          {"payee_public_key": "028b461870f297399c0a24d78abc169669e81db958008748ae879efbbe1f2b2d85"}
         ]
       }
     }
@@ -320,7 +329,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "send_payment",
     "params": [
       {
-        "invoice": "fibb1000000001qgxlna32kkmczxzat8almqgp23lgsdfjzja4wp7n5mxsld70njckjxdrp80f59yqln8xalfh7stu653qs30mrk720ve9et7fdrat97uvdmj783j7ruw872t60v7pe6hfjutenr4njadjgacmfen0l46au9wfpe5sg5d6dpqmvjlaf88equldr8zlpum8v2twgrsedjfkt8ejq2tdarqmac57rx4mkrxashe6nm0xu59rzaqm9dxv3vzc9jc6890ccfwqlucswsn62p3yafgd7gep5x2p8uda0kxap40mglarrrm0cjcuaq48q07s9qg33kuhudnttfhpg5vy5sndgtk6z9lvtcgquyrv0tk9gykd5r8t8yxh8d40z96ce2uwrcmscakrxhtl2eu7k3ltusk77sy5"
+        "invoice": "fibt10000000001p98tjdhf7emczxzat8lhtag2ulnd9vthgash247nujysgazu2zqd7ava6w7t7e5fj0l3rl34zuhjfjsqp7tcemg83rkpxztpv0qrtmxtjua5uxsqp34tnjq4uvyh0zc9s9pp4hyxuauelxfgwh8sfwhs7q5aan9kk9ujy0s08j22eu3gzya3dusksyqfs64kswc7v77wcfp2wuql0f2z754ecxsglw2fnsdc2cs38p7p9q7r7grm5389sdnw25c9v04ks3t34f04j6t7tgps7nnm9vr3tf5x5mk73lsx3zgaz3jl7a2h25gerjhht99ucc9a9tw6dmlyzy2uqjuhh5kehzsevjp8qym5vxuzamd9vm9jpvlhacjep4pawls5czkuq39xfgqqz8f99e0xlhf9kdauvhqcpxep0f3lv8vmqkrc0uu955l2jy5907cxlxrqncg7cz9ekryflhwqxlzj5h7fmf4s5vlyy8rhk5vgptqsw67"
       }
     ]
   }'
@@ -339,7 +348,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "list_channels",
     "params": [
       {
-        "peer_id": "QmS8y8sAoF7DH89st7fquUVW9Y1W3cgcnPgWjPe6tcm1dw"
+        "peer_id": "QmSRjNWQ1ZFwniCdBfb9xHG16fCwzKMwBJ5o2JL5wKb22X"
       }
     ]
   }'
@@ -366,7 +375,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "shutdown_channel",
     "params": [
       {
-        "channel_id": "0x2329a1ced09d0c9eff46068ac939596bb657a984b1d6385db563f2de837b8879",
+        "channel_id": "0x9e27ad3c4935af445e8d1b1fdf1cca3615ce7f761be079eda88e242c39d7fc7c",
         "close_script": {
           "code_hash": "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8",
           "hash_type": "type",
@@ -389,7 +398,7 @@ curl --location 'http://127.0.0.1:8227' \
     "method": "list_channels",
     "params": [
       {
-        "peer_id": "QmaQSn11jsAXWLhjHtZ9EVbauD88sCmYzty3GmYcoVWP2j"
+        "peer_id": "QmSRjNWQ1ZFwniCdBfb9xHG16fCwzKMwBJ5o2JL5wKb22X"
       }
     ]
   }'

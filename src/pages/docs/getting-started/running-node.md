@@ -27,7 +27,7 @@ cd fiber
 cargo build --release
 ```
 
-This document used the [v0.4.0 binary](https://github.com/nervosnetwork/fiber/releases/tag/v0.4.0) throughout the guide.
+This document used the [v0.5.0 binary](https://github.com/nervosnetwork/fiber/releases/tag/v0.5.0) throughout the guide.
 
 ### 2. Create Node Directory
 
