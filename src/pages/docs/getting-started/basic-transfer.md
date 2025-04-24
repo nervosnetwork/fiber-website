@@ -60,11 +60,7 @@ ckb-cli account export --lock-arg <lock_arg> --extended-privkey-path ./ckb/expor
 head -n 1 ./ckb/exported-key > ./ckb/key
 ```
 
-You can get Testnet funds from Faucets. Node1 requires CKB and RUSD, Node2 only requires CKB.
-(The RUSD faucet cannot directly fill an address, so you can first claim 20RUSD through a wallet like joyid, then transfer it to nodeA’s address from [the joyid wallet page](https://testnet.joyid.dev/).)
-
-- [https://faucet.nervos.org](https://faucet.nervos.org/) for CKB
-- [https://testnet0815.stablepp.xyz/stablecoin](https://testnet0815.stablepp.xyz/stablecoin) for RUSD
+You can get Testnet funds from faucets (Both nodes need): [https://faucet.nervos.org](https://faucet.nervos.org/).
 
 ### 4. Configure Ports
 
