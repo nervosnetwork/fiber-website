@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "https://docs.fiber.world",
+      "permanent": true
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": "https://docs.fiber.world/$1",
+      "permanent": true
+    },
+    {
+      "source": "/community",
+      "destination": "https://docs.fiber.world/showcase",
+      "permanent": true
+    }
+  ]
+} 

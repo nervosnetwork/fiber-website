@@ -16,9 +16,4 @@ export default defineConfig({
 			wrap: true,
 		},
 	},
-	redirects: {
-		'/docs': 'https://docs.fiber.world',
-		'/docs/[...path]': 'https://docs.fiber.world/[...path]',
-		'/community': 'https://docs.fiber.world/showcase',
-	},
 });
